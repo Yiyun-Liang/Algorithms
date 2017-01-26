@@ -4,6 +4,12 @@ package com.isa.Sorting;
  * Created by isa on 2017-01-23.
  */
 public class InsertionSort {
+    /*
+     * Time complexity: O(n^2)
+     * Space complexity: O(1)
+     *
+     */
+
     public static void insertionSort(int[] arr){
         for(int i = 1; i<arr.length; i++){
             int key = arr[i];
