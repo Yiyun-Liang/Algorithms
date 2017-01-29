@@ -17,5 +17,7 @@ public class SortingTest {
         for(int i: unsortedArr){
             System.out.println(i);
         }
+
+        System.out.println(MergeSort.inversions);
     }
 }

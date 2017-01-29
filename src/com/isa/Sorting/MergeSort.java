@@ -6,8 +6,11 @@ import java.util.Arrays;
  * Created by isa on 2017-01-25.
  */
 public class MergeSort {
+
+    public static int inversions = 0;
      /*
      * Time complexity: O(nlogn)
+     *  - log(n) levels(dividing) and each level needs n operations(merging)
      * Space complexity: O(n)
      *
      */
@@ -22,7 +25,8 @@ public class MergeSort {
         }
     }
 
-    public static void merge(int[] arr, int lower, int mid, int upper){
+    public static int merge(int[] arr, int lower, int mid, int upper){
+
         int[] temp = new int[arr.length];
 
         for (int i = lower; i <= upper; i++) {
@@ -40,6 +44,7 @@ public class MergeSort {
             } else {
                 arr[k] = temp[j];
                 j++;
+                inversions+= mid-i+1;
             }
             k++;
         }
@@ -50,6 +55,8 @@ public class MergeSort {
             k++;
             i++;
         }
+
+        return inversions;
     }
 
     public static void merge(int[] left, int[] right, int[] arr){
