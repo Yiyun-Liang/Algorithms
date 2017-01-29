@@ -23,35 +23,32 @@ public class MergeSort {
     }
 
     public static void merge(int[] arr, int lower, int mid, int upper){
-        int[] left = new int[mid-lower+1];
-        int[] right = new int[upper-mid+1];
-        int lenL = left.length;
-        int lenR = right.length;
+        int[] temp = new int[arr.length];
 
-        int l = 0;
-        int r = 0;
-        int m = 0;
-        while(l < lenL && r < lenR){
-            if(left[l] <= right[r]){
-                arr[m] = left[l];
-                l++;
-            }else{
-                arr[m] = right[r];
-                r++;
+        for (int i = lower; i <= upper; i++) {
+            temp[i] = arr[i];
+        }
+
+        int i = lower;
+        int j = mid + 1;
+        int k = lower;
+
+        while (i <= mid && j <= upper) {
+            if (temp[i] <= temp[j]) {
+                arr[k] = temp[i];
+                i++;
+            } else {
+                arr[k] = temp[j];
+                j++;
             }
-            m++;
+            k++;
         }
 
-        while(l < lenL){
-            arr[m] = left[l];
-            l++;
-            m++;
-        }
-
-        while(r < lenR){
-            arr[m] = right[r];
-            r++;
-            m++;
+        // the first array is guaranteed to be longer than the second one
+        while (i <= mid) {
+            arr[k] = temp[i];
+            k++;
+            i++;
         }
     }
 
