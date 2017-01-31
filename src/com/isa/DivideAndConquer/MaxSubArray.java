@@ -11,6 +11,10 @@ public class MaxSubArray {
         int maxSum;
     }
 
+    public Result maxSubArray(int[] arr){
+        return maxSubArray(arr, 0, arr.length - 1);
+    }
+
     /*
         Recurrance:
             T(1) = 1 -> one element
@@ -20,6 +24,32 @@ public class MaxSubArray {
             Time complexity: O(nlogn)
             Space complexity: O(logn)
      */
+    public Result maxSubArray(int[] arr, int lower, int upper){
+        Result left;
+        Result right;
+        Result crossing = new Result();
+
+        if(lower == upper){                 // base case: only one element
+            crossing.maxSum = arr[lower];
+            crossing.minIndex = lower;
+            crossing.maxSum = upper;
+            return crossing;
+        }else{
+            int mid = lower + (upper-lower)/2;
+            left = maxSubArray(arr, lower, mid);
+            right = maxSubArray(arr, mid+1, upper);
+            crossing = maxCrossingSubArray(arr, lower, mid, upper);
+
+            if(left.maxSum >= right.maxSum && left.maxSum >= crossing.maxSum){
+                return left;
+            }else if(right.maxSum >= left.maxSum && right.maxSum >= crossing.maxSum){
+                return right;
+            }else{
+                return crossing;
+            }
+        }
+    }
+
 
     public Result maxCrossingSubArray(int[] arr, int lower, int mid, int upper){
         // return multiple values as an object
