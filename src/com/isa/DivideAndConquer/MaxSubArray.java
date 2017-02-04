@@ -83,4 +83,11 @@ public class MaxSubArray {
         return res;
     }
 
+    /*
+        O(n) solution to max subarray problem
+     */
+    public void maxSubArrayON(){
+
+    }
+
 }
