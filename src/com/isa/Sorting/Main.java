@@ -5,7 +5,7 @@ import com.sun.scenario.effect.Merge;
 /**
  * Created by isa on 2017-01-23.
  */
-public class SortingTest {
+public class Main {
 
     public static void main(String[] args) {
         // 3,5,7,12,15,21
