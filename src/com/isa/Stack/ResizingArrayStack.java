@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 /**
  * Created by isa on 2017-02-06.
  */
-public class ResizingArrayStack<Item> implements Iterator<Item> {
+public class ResizingArrayStack<Item> implements Iterable<Item> {
 
     private int n;
     private Item[] s;
@@ -70,16 +70,6 @@ public class ResizingArrayStack<Item> implements Iterator<Item> {
      */
     public Iterator<Item> iterator() {
         return new ReverseArrayIterator();
-    }
-
-    @Override
-    public boolean hasNext() {
-        return false;
-    }
-
-    @Override
-    public Item next() {
-        return null;
     }
 
     // an iterator, doesn't implement remove() since it's optional
