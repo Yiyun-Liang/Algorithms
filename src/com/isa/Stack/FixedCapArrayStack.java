@@ -3,23 +3,23 @@ package com.isa.Stack;
 /**
  * Created by isa on 2017-02-06.
  */
-public class FixedCapArrayStackOfStrings {
+public class FixedCapArrayStack<Item> {
 
     private int index = 0;
-    private String[] s;
+    private Item[] s;
 
     // need to be changed, client doesn't know this!
-    public FixedCapArrayStackOfStrings(int capacity){
-        s = new String[capacity];
+    public FixedCapArrayStack(int capacity){
+        s = (Item[])new Object[capacity];
     }
 
-    public String pop(){
-        String item = s[--index];
+    public Item pop(){
+        Item item = s[--index];
         s[index] = null;
         return item;
     }
 
-    public void push(String item){
+    public void push(Item item){
         s[index++] = item;
     }
 

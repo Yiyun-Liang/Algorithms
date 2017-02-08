@@ -6,13 +6,13 @@ import java.util.NoSuchElementException;
 /**
  * Created by isa on 2017-02-06.
  */
-public class ResizingArrayStackOfStrins<Item> implements Iterator<Item> {
+public class ResizingArrayStack<Item> implements Iterator<Item> {
 
     private int n;
     private Item[] s;
 
     // need to be changed, client doesn't know this!
-    public ResizingArrayStackOfStrins(){
+    public ResizingArrayStack(){
         s = (Item[]) new Object[2];
         n = 0;
     }
