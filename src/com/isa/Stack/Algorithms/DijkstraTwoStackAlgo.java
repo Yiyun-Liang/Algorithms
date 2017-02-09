@@ -1,4 +1,4 @@
-package com.isa.Stack;
+package com.isa.Stack.Algorithms;
 
 import java.util.Stack;
 
