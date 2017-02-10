@@ -1,8 +1,12 @@
 package com.isa.Queue;
 
-import javax.naming.OperationNotSupportedException;
+import com.isa.Queue.Algorithms.KnuthShuffle;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.concurrent.ThreadLocalRandom;
+import edu.princeton.cs.algs4.*;
+
 
 /**
  * Created by isa on 2017-02-08.
@@ -24,12 +28,17 @@ import java.util.NoSuchElementException;
 // must use at most 48n + 192 bytes of memory. Additionally, your iterator implementation
 // must support operations next() and hasNext() in constant worst-case time; and construction
 // in linear time; you may (and will need to) use a linear amount of extra memory per iterator.
+
+// for array implementation, if order is not important, can always move the
+// last element to the empty position in the middle if something is removed from the middle of the array
 public class RandomizedQueue<Item> implements Iterable<Item> {
 
     private int n;
+    private Item[] items;
 
     // construct an empty randomized queue
     public RandomizedQueue(){
+        items = (Item[]) new Object[2];
         n = 0;
     }
 
@@ -43,13 +52,32 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return n;
     }
 
+    // logarithmic
+    private void resize(int capacity){
+        assert capacity >= 0;
+
+        Item[] copy = (Item[]) new Object[capacity];
+        for(int i = 0; i < n; i++){
+            copy[i] = items[i];
+        }
+        items = copy;
+    }
+
     // add the item
     public void enqueue(Item item){
         if(item == null){
             throw new NullPointerException();
         }
 
+        if(n == items.length){
+            resize(items.length*2);
+        }
 
+        items[n++] = item;
+
+        //if(n == items.length){
+        //    n = 0;   // wrap around, changed to n when resizing is done
+        //}
     }
 
     // remove and return a random item
@@ -57,6 +85,18 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if(isEmpty()){
             throw new NoSuchElementException();
         }
+
+        // [0, n)
+        int rand = StdRandom.uniform(n);
+        Item item = items[rand];
+        items[rand] = items[--n];
+        items[n] = null;
+
+        if(n == items.length/4){
+            resize(items.length/2);
+        }
+
+        return item;
     }
 
     // return (but do not remove) a random item
@@ -64,6 +104,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if(isEmpty()){
             throw new NoSuchElementException();
         }
+
+        // [0, n)
+        int rand = StdRandom.uniform(n);
+
+        return items[rand];
     }
 
     // return an independent iterator over items in random order
@@ -71,11 +116,25 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return new RandomIterator();
     }
 
+    // Fisher–Yates shuffle
+    // Time complexity: O(n)
+    // in-place shuffle
     private class RandomIterator implements Iterator<Item> {
+
+        private int i = 0;
+        private Item[] randomized;
+
+        RandomIterator(){
+            randomized = (Item[]) new Object[n];
+            for (int j = 0; j < n; j++) {
+                randomized[j] = items[j];
+            }
+            KnuthShuffle.shuffle(randomized);
+        }
 
         @Override
         public boolean hasNext() {
-            return n != 0;
+            return i < n;
         }
 
         @Override
@@ -84,7 +143,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
                 throw new NoSuchElementException();
             }
 
-            return sample();
+            // never return an item that has been return before
+            int rand = (int) (Math.random() * (n-i));
+            Item item = randomized[rand];
+            randomized[rand] = randomized[n-(++i)];
+            randomized[n-i] = null;
+            return item;
         }
 
         @Override
