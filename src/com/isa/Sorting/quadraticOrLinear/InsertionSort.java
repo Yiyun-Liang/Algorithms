@@ -1,4 +1,4 @@
-package com.isa.Sorting;
+package com.isa.Sorting.quadraticOrLinear;
 
 /**
  * Created by isa on 2017-01-23.
@@ -6,8 +6,13 @@ package com.isa.Sorting;
 public class InsertionSort {
     /*
      * Time complexity: O(n^2)
+     *          - uses n^2/4 compares and n^2/4 swaps on average
      * Space complexity: O(1)
      *
+     * Def: partially sorted - number of inversions is <= cN
+     *      - for partially sorted arrays, insertion sort runs in linear time
+     *      - number of compares = inversions or swaps + (n-1)
+     *      - (n-1) compares except the first element, if sorted then only (n-1) compares
      */
 
     public static void insertionSort(int[] arr){

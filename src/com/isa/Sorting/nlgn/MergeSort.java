@@ -1,4 +1,4 @@
-package com.isa.Sorting;
+package com.isa.Sorting.nlgn;
 
 import java.util.Arrays;
 
