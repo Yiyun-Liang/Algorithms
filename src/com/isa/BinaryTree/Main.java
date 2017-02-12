@@ -12,7 +12,7 @@ public class Main {
             2) Complete Binary Tree - every level, except possibly the last, is completely filled,
                                       and all nodes are as far left as possible (all levels except the last are filled)
             3) Perfect Binary Tree - all interior nodes have two children and all leaves have the same depth or same level
-                                   - height = lgn
+                                   - height = floor(lgn)
                                    - num leaf nodes l = (n+1)/2
                                    - num non-leaf nodes = n - l = l - 1
                                    - num nodes in total n = 2l - 1 = 2^(h+1) - 1
