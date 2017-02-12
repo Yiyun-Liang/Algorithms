@@ -1,7 +1,6 @@
 package com.isa.Sorting;
 
-import com.isa.Sorting.quadratic.SelectionSort;
-import jdk.nashorn.tools.Shell;
+import com.isa.Sorting.nlgn2.ShellSort;
 
 /**
  * Created by isa on 2017-01-23.

@@ -1,10 +1,11 @@
-package com.isa.Queue.Algorithms;
-
-import java.util.concurrent.ThreadLocalRandom;
+package com.isa;
 
 /**
  * Created by isa on 2017-02-09.
  */
+
+// linear time shuffling, uniformly random permutation
+// eg. poker game
 public class KnuthShuffle {
 
     // this class should not be instantiated
@@ -23,7 +24,9 @@ public class KnuthShuffle {
             // exclusive so i+1
             // choose index uniformly in [i, n-i]
             // ex. 0~100 -> (int)(Math.random() * 101);
-            int j = i + (int) (Math.random() * (n - i));
+            // int j = i + (int) (Math.random() * (n - i));
+            // random number in [0, i]
+            int j = (int) (Math.random() * (i + 1));
             //int j = ThreadLocalRandom.current().nextInt(0, n-i);
             Object temp = arr[i];
             arr[i] = arr[j];

@@ -1,4 +1,4 @@
-package com.isa.Sorting;
+package com.isa.Sorting.nlgn2;
 
 /**
  * Created by isa on 2017-02-11.
@@ -10,6 +10,9 @@ public class ShellSort {
         shell sort moves entries several positions at a time by h-sorting the array
 
         This is one of the oldest sorting method implemented by Shell in 1959
+
+        Time Complexity: O(n^(3/2)), O(n(log(n))^2), open to analysis
+                    best is Ω(n log(n))
      */
 
     /*
@@ -30,7 +33,7 @@ public class ShellSort {
 
         int h = 1;
         while(h < n/3){
-            h = 3*h + 1;
+            h = 3*h + 1;        // starts from 1,4,7,...
         }
 
         while(h >= 1){

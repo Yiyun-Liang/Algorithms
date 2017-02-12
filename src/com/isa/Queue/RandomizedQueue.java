@@ -1,10 +1,10 @@
 package com.isa.Queue;
 
-import com.isa.Queue.Algorithms.KnuthShuffle;
+import com.isa.KnuthShuffle;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.concurrent.ThreadLocalRandom;
+
 import edu.princeton.cs.algs4.*;
 
 

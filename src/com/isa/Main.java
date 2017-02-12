@@ -1,5 +1,7 @@
 package com.isa;
 
+import com.isa.Array.BinarySearch;
+
 public class Main {
 
     public static void main(String[] args) {
