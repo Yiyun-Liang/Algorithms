@@ -9,10 +9,11 @@ public class Main {
             max-heap: the value of a node is at most the value of its parent
             min-heap: parent node always smaller then its children nodes
 
-        In the form of an array, parent always at left of its children
-            1) Parent(i) return floor(i/2)
-            2) Left(i) return i*2
-            3) Right(i) return i*2 + 1
+        In the form of an array, parent always at left of its children (zero-based array or one-based)
+            1) Parent(i) return or floor(i/2)
+            2) Left(i) return 2i + 1 or 2i
+            3) Right(i) return 2i + 2 or 2i + 1
+            4) Root nodes are at floor(n/2) + 1, floor(n/2) + 2 .... n
 
         Time complexity:
             All basic operations run in worst-case O(lgn) time.
@@ -20,4 +21,8 @@ public class Main {
             Heapify takes O(lgn), which maintains heap properties.
 
      */
+
+    public static void main(String[] args){
+
+    }
 }
