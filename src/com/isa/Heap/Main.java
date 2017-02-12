@@ -23,6 +23,13 @@ public class Main {
      */
 
     public static void main(String[] args){
+        int[] arr = {0, 15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1};
 
+        MaxHeap mh = new MaxHeap(arr);
+        mh.heapInsert(10);
+
+        for(int i: mh.arr){
+            System.out.println(i);
+        }
     }
 }

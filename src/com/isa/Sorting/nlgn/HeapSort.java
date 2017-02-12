@@ -14,13 +14,13 @@ public class HeapSort {
 
     public static void sort(int[] arr){
         int heapSize = arr.length - 1;
-        MaxHeap mh = new MaxHeap(heapSize);
-        mh.buildAHeap(arr);
+        MaxHeap mh = new MaxHeap(arr);
+        // mh.buildAHeap(arr); is involved in the constructor of maxHeap
 
         for(int i = heapSize; i >= 2; i--){    // n-1 calls
-            mh.exch(arr, 1, i);
+            mh.exch(1, i);
             mh.decreaseHeapSizeByOne();
-            mh.maxHeapify(arr, 1);             // O(lgn)
+            mh.maxHeapify(1);             // O(lgn)
         }
     }
 }
