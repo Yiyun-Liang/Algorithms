@@ -42,6 +42,7 @@ public class PriorityQueue {
 
         if(heapSize >= arr.length){
             mh.resize(arr.length*2);
+            arr = mh.arr;
         }
         arr[heapSize] = Integer.MIN_VALUE;
         heapIncreaseKey(heapSize, key);  // runs O(lgn) times
