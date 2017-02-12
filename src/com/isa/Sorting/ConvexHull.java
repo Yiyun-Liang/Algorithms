@@ -16,9 +16,17 @@ public class ConvexHull {
      */
 
     /*
-        Graham scan
+        Graham scan: use a stack, push and pop points
             1) choose point p with smallest y coordinates
             2) sort points by polar angle with p
             3) consider points in order; discard unless it creates a ccw turn
+     */
+
+    /*
+        - create a stack of points
+        - sort according to y coors
+        - sort according to polar coors
+        - push first two elements in the array
+        - ccw(poped, peek, next)
      */
 }
