@@ -18,78 +18,6 @@ public class MaxHeap {
         buildAHeap();
     }
 
-    // O(lgn)
-    public void heapDelete(int i){
-        // replace arr[i] with arr[heapsize]
-        // if key is larger, bubble up
-        // if key is smaller or same, bubble down
-
-        if(arr[i] < arr[heapSize]){
-            heapIncreaseKey(i, arr[heapSize]);
-            heapSize -= 1;
-        }else{
-            arr[i] = arr[heapSize];
-            heapSize -= 1;
-            maxHeapify(i);
-        }
-    }
-
-    // O(lgn)
-    public void heapInsert(int key){
-        heapSize += 1;
-
-        if(heapSize >= arr.length){
-            resize(arr.length*2);
-        }
-        arr[heapSize] = Integer.MIN_VALUE;
-        heapIncreaseKey(heapSize, key);  // runs O(lgn) times
-    }
-
-    // O(lgn)
-    public void heapIncreaseKey(int index, int newKey){
-        if(newKey < arr[index]){
-            System.err.println("new key is smaller than current key");
-            exit(0);
-        }
-
-        arr[index] = newKey;
-
-        // key is increased, not might need to bubble up
-        while(index > 1 && arr[parent(index)] < arr[index]){   // run O(lgn) times
-            exch(index, parent(index));
-            index = parent(index);   // once index is set to root(index = 1) or in position, stop
-        }
-
-        /*
-            Optimize exch to one step by apply insertion sort technique
-
-            while(index > 1 && arr[parent(index)] < arr[index]){   // run O(lgn) times
-                arr[index] = arr[parent(index)]
-                index = parent(index);   // once index is set to root(index = 1) or in position, stop
-            }
-            arr[i] = newKey
-         */
-    }
-
-    // O(lgn)
-    public int heapExtractMax(){
-        if(heapSize < 1){
-            throw new NoSuchElementException("Heap overflow");
-        }
-
-        int max = arr[1];
-
-        arr[1] = arr[heapSize];
-        heapSize -= 1;
-        maxHeapify(1);   // always change size first, then heapify!!, O(lgn)
-
-        return max;
-    }
-
-    public int heapMaximum(){
-        return arr[1];
-    }
-
     /**
      * Return an array that follows heap properties
      * take A random ordered array that has valid numbers in [1, len-1]
@@ -156,7 +84,7 @@ public class MaxHeap {
     }
 
     // logarithmic
-    private void resize(int capacity){
+    public void resize(int capacity){
         assert capacity >= 0;
 
         int[] copy = new int[capacity];
