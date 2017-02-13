@@ -23,13 +23,23 @@ public class Main {
      */
 
     public static void main(String[] args){
-        int[] arr = {0, 15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1};
+        /*int[] arr = {0, 15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1};
 
-        PriorityQueue q = new PriorityQueue(arr);
+        PriorityQueueForInt q = new PriorityQueueForInt(arr);
         q.heapInsert(10);
 
         for(int i: q.arr){
             System.out.println(i);
-        }
+        }*/
+
+        int[][] m = {
+                {2, 3, 12, Integer.MAX_VALUE},
+                {4, 8, 16, Integer.MAX_VALUE},
+                {5, 9, Integer.MAX_VALUE, Integer.MAX_VALUE},
+                {14, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE}
+        };
+
+        YoungTableau yt = new YoungTableau();
+        System.out.print(yt.exists(m, 14));
     }
 }

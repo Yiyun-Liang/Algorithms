@@ -7,13 +7,13 @@ import static java.lang.System.exit;
 /**
  * Created by isa on 2017-02-12.
  */
-public class PriorityQueue {
+public class PriorityQueueForInt {
 
     MaxHeap mh;
     int[] arr;
     int heapSize;
 
-    public PriorityQueue(int[] arr){
+    public PriorityQueueForInt(int[] arr){
         mh = new MaxHeap(arr);
         this.arr = arr;
         this.heapSize = arr.length - 1;
