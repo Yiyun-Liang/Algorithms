@@ -14,8 +14,33 @@ public class QuickSort {
             int mid = lower + (upper - lower)/2;
             int q = partition(arr, lower, upper);
             sort(arr, lower, q-1);
-            sort(arr, q+1, upper);
+            sort(arr, q+1, upper);  // tail recursion
         }
+    }
+
+    public static void sortTailRecurOptimized(int[] arr, int lower, int upper){
+        while(lower < upper){
+            int mid = lower + (upper - lower)/2;
+            int q = partition(arr, lower, upper);
+
+            if(upper-q >= q-lower){
+                sort(arr, lower, q-1);
+                lower = q+1;
+            }else{
+                sort(arr, q+1, upper);
+                upper = q-1;
+            }
+        }
+    }
+
+    /*
+        Allow all element to have same probability to be the pivot,
+        so that the chance of getting good partition is optimized
+     */
+    public static int randomized_partition(int[] arr, int p, int r){
+        int q = p + (int) Math.random()*(r-p+1);
+        swap(arr, q, r);
+        return partition(arr, p, r);
     }
 
     /*

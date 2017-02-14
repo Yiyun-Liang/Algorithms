@@ -2,6 +2,7 @@ package com.isa.Sorting;
 
 import com.isa.Sorting.nlgn.HeapSort;
 import com.isa.Sorting.nlgn2.ShellSort;
+import com.isa.Sorting.quadraticOrNlgn.QuickSort;
 
 /**
  * Created by isa on 2017-01-23.
@@ -17,9 +18,10 @@ public class Main {
         //MergeSort.mergeSort(unsortedArr, 0, 5);
         //SelectionSort.sort(unsortedArr);
         //ShellSort.sort(unsortedArr);
-        HeapSort.sort(unsortedArrForHeapSort);
+        //HeapSort.sort(unsortedArrForHeapSort);
+        QuickSort.sort(unsortedArr);
 
-        for(int i: unsortedArrForHeapSort){
+        for(int i: unsortedArr){
             System.out.println(i);
         }
 
