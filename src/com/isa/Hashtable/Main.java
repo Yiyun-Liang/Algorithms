@@ -13,11 +13,22 @@ public class Main {
                 1) division
                 2) multiplication
                 3) universal hashing: randomly choose a hash algorithm for a key
+
+                4) perfect hashing: worst case O(1) memory accesses
+                    - two levels of hashing, with universal hashing at each level
+                    - first level is same as hashing with chaining, use some hash function h
+                    - maintain a secondary hashtable to replace linked lists, choose h for this carefully,
+                      then we can guarantee no collisions at this level
+                      - in order to have no collisions, need to let the size of secondary hashtable to be
+                        n^2 where n is the number of keys stored at this slot, need to choose primary hash fxn wisely
+
+                    Total memory used by all primary and secondary hashtables = O(n)
+
             Definition:
                 Simple Uniform Hashing: each key is equally likely to be hashed to any of the m slots
                                         in the hashtable, independently of where any other key has hashed to.
 
-        Collisions:
+        Collisions Resolution Techniques:
 
         Performance: 1 and 2 both have average time of O(1) for basic dictionary operations
 
