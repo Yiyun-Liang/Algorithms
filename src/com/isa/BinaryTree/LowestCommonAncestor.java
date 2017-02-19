@@ -4,6 +4,11 @@ package com.isa.BinaryTree;
  * Created by isa on 2017-02-04.
  */
 public class LowestCommonAncestor {
+    class Node {
+        Node left;
+        Node right;
+        int value;
+    }
 
     // traverse from the root node to find the two nodes
 

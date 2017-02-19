@@ -1,9 +1,14 @@
-package com.isa.BinaryTree;
+package com.isa.BinaryTree.BinarySearchTree;
 
 /**
  * Created by isa on 2017-02-04.
  */
-public class SmallestSuccessor {
+public class FindSuccessor {
+    class Node {
+        Node left;
+        Node right;
+        int value;
+    }
 
     /*
         Time complexity: O(n), where n is the height of the tree
@@ -31,7 +36,25 @@ public class SmallestSuccessor {
         }
 
         return succ;
+
+
+        /*
+            Alternative with a parent pointer:
+            {
+                if(n.right != null){
+                    return minValue(n.right);
+                }
+
+                // go up until n is the left child of succ
+                Node succ = n.p;
+                while(succ != null && n == succ.right){
+                    n = succ;
+                    succ = succ.p;
+                }
+            }
+         */
     }
+
 
     public Node minValue(Node n){
         Node current = n;
