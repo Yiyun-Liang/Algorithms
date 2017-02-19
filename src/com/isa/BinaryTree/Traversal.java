@@ -44,6 +44,7 @@ public class Traversal {
         int value;
         NNode left;
         NNode rightSibling;
+        NNode parent;
     }
 
     /*
@@ -59,6 +60,28 @@ public class Traversal {
         }
         if(root.rightSibling != null){
             traverseNNodeTree(root.rightSibling);
+        }
+    }
+
+    /*
+        Non-recursively traverse a n-node tree with O(1) space
+     */
+
+    void traverseNNodeTreeNR(NNode root){
+        NNode prev = null;
+
+        while(root != null){
+            if (prev == root.parent){
+                System.out.println(root.value);
+                root = (root.left != null) ? root.left :
+                        (root.rightSibling != null) ? root.rightSibling : root.parent;
+            }else if(prev == root.left && root.rightSibling != null){
+                prev = root;
+                root = root.rightSibling;
+            }else{
+                prev = root;
+                root = root.parent;
+            }
         }
     }
 }
