@@ -84,4 +84,21 @@ public class Traversal {
             }
         }
     }
+
+    /*
+        The left-child, right-sibling representation of an arbitrary
+        rooted tree uses three pointers in each node: left-child,
+        right-sibling, and parent. From any node, its parent can be
+        reached and identified in constant time and all its children
+        can be reached and identified in time linear in the number of
+        children. Show how to use only two pointers and one boolean
+        value in each node so that the parent of a node or all of its
+        children can be reached and identified in time linear in the number of children.
+     */
+
+    /*
+        Remove parent pointer, add a boolean value for each node,
+        indicating whether the node is the last right sibling, if true,
+        then it's right sibling pointer will point to its parent.
+     */
 }
