@@ -29,7 +29,7 @@ public class InsertionAndDeletion {
 
             if(root.value > n.value){
                 root = root.left;
-            }else if(root.value < n.value){
+            }else{
                 root = root.right;
             }
         }
@@ -44,6 +44,21 @@ public class InsertionAndDeletion {
         }else{
             temp.right = n;
         }
+    }
+
+    // n is initialized to have null left and null right
+    void treeInsertRecursive(Node root, Node n){
+
+        if(root == null){
+            root = n;
+        }else{
+            if(root.value > n.value){
+                treeInsertRecursive(root.left, n);
+            }else{
+                treeInsertRecursive(root.right, n);
+            }
+        }
+
     }
 
     /*
