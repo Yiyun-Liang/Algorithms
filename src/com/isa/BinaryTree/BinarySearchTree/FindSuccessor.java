@@ -15,6 +15,7 @@ public class FindSuccessor {
         Space complexity: O(1)
      */
 
+    // this can be used if input is a single key rather than a node pointer
     public Node inorderSuccessor(Node root, Node n){
         Node succ;
 

@@ -1,6 +1,7 @@
 package com.isa.BinaryTree.BinarySearchTree;
 
 import java.util.Stack;
+import com.isa.BinaryTree.BinarySearchTree.BST.*;
 
 /**
  * Created by isa on 2017-02-18.
@@ -14,18 +15,11 @@ public class BasicOperations {
             y.key >= x.key.
      */
 
-    class Node {
-        Node left;
-        Node right;
-        Node parent; // may or may not have this
-        int value;
-    }
-
     /*
         In order recursive traversal in O(n)
      */
 
-    void inOrderRecursive(Node root){
+    static void inOrderRecursive(Node root){
         if(root != null){
             inOrderRecursive(root.left);
             System.out.println(root.value);
@@ -37,7 +31,7 @@ public class BasicOperations {
         In order non-recursive traversal with a stack in O(n)
      */
 
-    void inOrderIterative(Node root){
+    static void inOrderIterative(Node root){
 
         Stack<Node> st = new Stack<>();
 
@@ -53,6 +47,11 @@ public class BasicOperations {
             root = temp.right;
         }
     }
+
+    /*
+        Another way to do a inorder tree walk is to
+        call findMin first and then call findSuccessor (n-1) times
+     */
 
 
     /*
@@ -93,14 +92,14 @@ public class BasicOperations {
     /*
         Both find min and find max takes O(h) time
      */
-    Node findMin(Node root){
+    static Node findMin(Node root){
         while(root.left != null){
             root = root.left;
         }
         return root;
     }
 
-    Node findMax(Node root){
+    static Node findMax(Node root){
         while(root.right != null){
             root = root.right;
         }
@@ -108,7 +107,7 @@ public class BasicOperations {
     }
 
 
-    Node findPredecessor(Node n){
+    static Node findPredecessor(Node n){
         if(n.left != null){
             findMax(n.left);
         }
@@ -120,5 +119,20 @@ public class BasicOperations {
         }
 
         return pred;
+    }
+
+    static Node findSuccessor(Node n){
+        if(n.right != null){
+            return findMin(n.right);
+        }
+
+        // go up until n is the left child of succ
+        Node succ = n.parent;
+        while(succ != null && n == succ.right){
+            n = succ;
+            succ = succ.parent;
+        }
+
+        return succ;
     }
 }
