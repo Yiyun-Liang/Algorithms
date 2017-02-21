@@ -37,6 +37,7 @@ public class RedBlackBST {
      *  Red-black tree insertion.
      ***************************************************************************/
 
+    // insert and fixup
     public void put(){
 
     }
@@ -44,6 +45,10 @@ public class RedBlackBST {
     /***************************************************************************
      *  Helper functions.
      ***************************************************************************/
+
+    private void insertFixup(Node x){
+        
+    }
 
     // O(1) time
     // assumes x.right != null
@@ -92,7 +97,7 @@ public class RedBlackBST {
         }else{
             x.parent.right = y;
         }
-        
+
         x.parent = y;
     }
 
