@@ -1,5 +1,7 @@
 package com.isa.BinaryTree.RedBlackBST;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 /**
  * Created by isa on 2017-02-20.
  */
@@ -19,6 +21,7 @@ public class RedBlackBST {
     private static final boolean BLACK = false;
 
     Node root;
+    Node nil; // where all the leaves point to
 
     private class Node {
         Node left;
@@ -38,8 +41,38 @@ public class RedBlackBST {
      ***************************************************************************/
 
     // insert and fixup
-    public void put(){
+    public void put(Node x){
+        Node y = nil;
+        Node z = root;
 
+        // find right leaf position x and keep track of its parent in y
+        while(x != nil){
+            y = z;
+            if(x.key < z.key){
+                x = x.left;
+            }else{
+                x = x.right;
+            }
+        }
+
+        x.parent = y;
+
+        // set y's child
+        if(y == nil){
+            root = x;
+        }else if(x.key < y.key){
+            y.left = x;
+        }else{
+            y.right = x;
+        }
+
+        // new node's properties, it is a leaf
+        x.left = nil;
+        x.right = nil;
+        x.color = RED;
+
+        // fixup for red black tree properties
+        insertFixup(x);
     }
 
     /***************************************************************************
@@ -47,7 +80,51 @@ public class RedBlackBST {
      ***************************************************************************/
 
     private void insertFixup(Node x){
-        
+        // cannot have two red node as parent and child
+        while(x.parent.color == RED){
+            // x's parent is a left child
+            if(x.parent == x.parent.parent.left){
+                Node y = x.parent.parent.right;
+
+                // Case 1: if y is red, recolor
+                if(y.color == RED){
+                    x.parent.color = BLACK;
+                    y.color = BLACK;
+                    x.parent.parent.color = RED;
+                    x = x.parent.parent;
+                }else if(x == x.parent.right){
+                    // Case 2: if y is black & x is a right child
+                    x = x.parent;
+                    leftRotate(x);
+                }else{
+                    // Case 3: y is black & x is a left child
+                    x.parent.color = BLACK;
+                    x.parent.parent.color = RED;
+                    rightRotate(x.parent.parent);
+                }
+            }else{
+                Node y = x.parent.parent.left;
+
+                // Case 1: if y is red, recolor
+                if(y.color == RED){
+                    x.parent.color = BLACK;
+                    y.color = BLACK;
+                    x.parent.parent.color = RED;
+                    x = x.parent.parent;
+                }else if(x == x.parent.left){
+                    // Case 2: if y is black & x is a right child
+                    x = x.parent;
+                    rightRotate(x);
+                }else{
+                    // Case 3: y is black & x is a left child
+                    x.parent.color = BLACK;
+                    x.parent.parent.color = RED;
+                    leftRotate(x.parent.parent);
+                }
+            }
+        }
+
+        root.color = BLACK;
     }
 
     // O(1) time
