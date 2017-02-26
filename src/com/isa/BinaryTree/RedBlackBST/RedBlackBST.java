@@ -77,7 +77,36 @@ public class RedBlackBST {
 
     // delete and fixup
     public void delete(Node x){
+        Node y = x;
+        boolean yOriginalColor = y.color;
 
+        if(x.left == nil){
+            Node z = x.right;
+            transplant(x, x.right);
+        }else if(x.right == nil){
+            Node z = x.left;
+            transplant(x, x.left);
+        }else{
+            y = minimum(x.right);
+            yOriginalColor = y.color;
+            Node z = y.right;
+            if(y.parent == x){
+                z.parent = y;
+            }else{
+                transplant(y, y.right);
+                y.right = x.right;
+                y.right.parent = y;
+            }
+            
+            transplant(x, y);
+            y.left = x.left;
+            y.left.parent = y;
+            y.color = x.color;
+        }
+
+        if(yOriginalColor == BLACK){
+            deleteFixup(x);
+        }
     }
 
     /***************************************************************************
@@ -196,6 +225,13 @@ public class RedBlackBST {
         }
 
         x.parent = y;
+    }
+
+    private Node minimum(Node x){
+        while(x.left != null){
+            x = x.left;
+        }
+        return x;
     }
 
     private boolean isRed(Node x) {
