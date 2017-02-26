@@ -97,7 +97,7 @@ public class RedBlackBST {
                 y.right = x.right;
                 y.right.parent = y;
             }
-            
+
             transplant(x, y);
             y.left = x.left;
             y.left.parent = y;
