@@ -15,6 +15,7 @@ public class MinGap {
         Node right;
         Node parent;
 
+        // this can be updated during insertion and deletion in O(lgn) time
         int minGap;  // leaf nodes has minGap = infinity
                      // otherwise, minGap =
                      //     min(n.left.minGap, n.right.minGap, (n.key - findMax(n.left)), (findMin(n.right) - n.key))
