@@ -16,6 +16,12 @@ public class PersistantBST {
 
     // keep a copy of the old version of the binary search tree
     // does not change old tree, but return a new tree with updated node
+    // O(h) time and space, where h is height of the tree
+    // if we want to also update parent pointers, then we would need O(n) time and space when root is changed
+    /*
+        To ensure O(lgn) deletion and insertion with a red-black tree,
+        We can have a stack to store node pointer from root to leaf
+     */
     public Node PBSTInsertIterative(int key){
         Node r = root;
         Node ret = null;
