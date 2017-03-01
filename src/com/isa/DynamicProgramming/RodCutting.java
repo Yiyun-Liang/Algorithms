@@ -10,15 +10,42 @@ public class RodCutting {
         Use to-down memoization or bottom-up dp technique to get polynomial time solution rather than exponential
      */
 
-    // O(2^n) time
-    public void rodCuttingNaive(int price[]){
+    // O(2^n) time, considered all 2^(n-1) ways of cutting the rod
+    // n is the length of the rod being the first part, also the length of the rod
+    public int rodCuttingNaive(int price[], int n){
+        if(n == 0){
+            return 0;
+        }
 
+        int max = Integer.MIN_VALUE; // can probably be 0 since all prices are positive
+        for(int i = 1; i <= n; i++){
+            max = Math.max(max, price[i]+rodCuttingNaive(price, n-i));
+        }
+
+        return max;
     }
 
     // O(n^2) time
     // add memoization table on top of the naive solution
-    public void rodCuttingTopDown(int price[]){
+    public int rodCuttingTopDown(int price[], int[] memo, int n){
+        if(memo[n] > 0){
+            return memo[n];
+        }
 
+        int max = Integer.MIN_VALUE;
+
+        if(n == 0){
+            max = 0;
+        }else{
+            // max = negative infinity
+            for(int i = 1; i <= n; i++){
+                max = Math.max(max, price[i]+rodCuttingNaive(price, n-i));
+            }
+        }
+
+        memo[n] = max;
+
+        return max;
     }
 
     // O(n^2) time
