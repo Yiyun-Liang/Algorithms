@@ -27,6 +27,7 @@ public class RodCutting {
 
     // O(n^2) time
     // add memoization table on top of the naive solution
+    // memo has n+1 size
     public int rodCuttingTopDown(int price[], int[] memo, int n){
         if(memo[n] > 0){
             return memo[n];
@@ -52,8 +53,19 @@ public class RodCutting {
     // solve subproblems in order from smallest to biggest, so that
     // when the bigger problems come, all the sub smaller problems that this solution for bigger problem needed
     // is already solved and saved in a table
-    public void rodCuttingBottomUp(int price[]){
+    public int rodCuttingBottomUp(int price[], int n){
+        int[] memo = new int[n+1];
 
+        for(int j = 1; j<= n; j++){
+            int q = Integer.MIN_VALUE;
+
+            for(int i = 1; i <= j; i++){
+                q = Math.max(q, price[i]+memo[j-i]);
+            }
+            memo[j] = q;
+        }
+
+        return memo[n];
     }
 
 }
