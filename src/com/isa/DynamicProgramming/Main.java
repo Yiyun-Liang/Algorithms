@@ -5,6 +5,11 @@ package com.isa.DynamicProgramming;
  */
 public class Main {
 
-    RodCutting rdc = new RodCutting();
+    public static void main(String[] args){
+        int[] prices = {0,1,5,8,9,10,17,17,20,24,30};
+        RodCutting rdc = new RodCutting();
 
+        rdc.printRodCuttingSolution(prices, 10);
+        rdc.printRodCuttingMaxProfit(prices, 8);
+    }
 }

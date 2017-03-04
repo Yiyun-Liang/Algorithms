@@ -40,7 +40,7 @@ public class RodCutting {
         }else{
             // max = negative infinity
             for(int i = 1; i <= n; i++){
-                max = Math.max(max, price[i]+rodCuttingNaive(price, n-i));
+                max = Math.max(max, price[i]+rodCuttingTopDown(price, memo, n-i));
             }
         }
 
@@ -55,6 +55,7 @@ public class RodCutting {
     // is already solved and saved in a table
     public int rodCuttingBottomUp(int price[], int n){
         int[] memo = new int[n+1];
+        memo[0] = 0;
 
         for(int j = 1; j<= n; j++){
             int q = Integer.MIN_VALUE;
@@ -68,4 +69,39 @@ public class RodCutting {
         return memo[n];
     }
 
+    public int[] rodCuttingExtendedBottomUp(int price[], int n){
+        int[] memo = new int[n+1];
+        memo[0] = 0;
+
+        int[] s = new int[n+1];
+        s[0] = 0;
+
+        for(int j = 1; j<= n; j++){
+            int q = Integer.MIN_VALUE;
+
+            for(int i = 1; i <= j; i++){
+
+                if(price[i] + memo[j-i] > q){
+                    q = price[i] + memo[j-i];
+                    s[j] = i;
+                }
+            }
+            memo[j] = q;
+        }
+
+        return s;
+    }
+
+    public void printRodCuttingSolution(int price[], int n){
+        int[] s = rodCuttingExtendedBottomUp(price, n);
+        while(n > 0){
+            System.out.println(s[n]); // 1st cut, 2nd...
+            n -= s[n];
+        }
+    }
+
+    public void printRodCuttingMaxProfit(int price[], int n){
+        int max = rodCuttingTopDown(price, new int[n+1], n);
+        System.out.println(max);
+    }
 }
