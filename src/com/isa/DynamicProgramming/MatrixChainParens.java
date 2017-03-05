@@ -3,7 +3,7 @@ package com.isa.DynamicProgramming;
 /**
  * Created by isa on 2017-03-03.
  */
-public class MatrixMultParenthesization {
+public class MatrixChainParens {
     static int[][] m; // m[i][j] stores cost/number of mults to be done for multiplying matrix Ai to Aj
     static int[][] s; // s[i][j] stores k for how to partition the chain of matrices to get optimal cost
 

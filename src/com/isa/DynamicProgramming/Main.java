@@ -20,13 +20,13 @@ public class Main {
         int[] matrix = {30, 35, 15, 5, 10, 20, 25};
         int[] matrix2 = {10, 100, 5, 50};  //this should return 7500
         int[] matrix3 = {5, 10, 3, 12, 5, 50, 6};
-        int c = MatrixMultParenthesization.matrixChainOrder(matrix3);
+        int c = MatrixChainParens.matrixChainOrder(matrix3);
         System.out.println(c);
 
         // test matrix chain multiplication
         int[][] T1 = {{1, 1}, {1, 0}};
-        int[][] S = MatrixMultParenthesization.matrixMultiply(T1, T1);
-        MatrixMultParenthesization.printMatrix(S);
+        int[][] S = MatrixChainParens.matrixMultiply(T1, T1);
+        MatrixChainParens.printMatrix(S);
 
         // practice on 2D array
         int[][] A = {{1, 1}, {1, 0}, {2, 3}};
