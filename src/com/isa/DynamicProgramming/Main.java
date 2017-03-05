@@ -5,6 +5,12 @@ package com.isa.DynamicProgramming;
  */
 public class Main {
 
+    /*
+        Two ingradients of dp problems:
+            1) optimal subproblems
+            2) overlapping subproblems
+     */
+
     public static void main(String[] args){
         int[] prices = {0,1,5,8,9,10,17,17,20,24,30};
         RodCutting rdc = new RodCutting();
