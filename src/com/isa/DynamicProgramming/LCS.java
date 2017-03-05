@@ -33,12 +33,11 @@ public class LCS {
      */
 
     // Bottom up approach, takes O(mn) time and space
-    public static int[][][] LCSLength(String X, String Y){
+    public static int[][] LCSLength(String X, String Y){
         int m = X.length();
         int n = Y.length();
 
         int[][] C = new int[m+1][n+1];
-        int[][] S = new int[m+1][n+1];
 
         for(int i = 0; i <= m; i++){
             C[i][0] = 0;
@@ -47,24 +46,38 @@ public class LCS {
             C[0][j] = 0;
         }
 
-        for(int i = 1; i <= m; i++){
-            for(int j = 1; j <= n; j++){
-                if(X.charAt(i-1) == Y.charAt(j-1)){       // chars are primitive type, can be compared directly
-                    C[i][j] = C[i-1][j-1] + 1;
-                    S[i][j] = 1;
-                }else if(C[i-1][j] >= C[i][j-1]){
-                    C[i][j] = C[i-1][j];
-                    S[i][j] = 2;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(X.charAt(i) == Y.charAt(j)){       // chars are primitive type, can be compared directly
+                    C[i+1][j+1] = C[i][j] + 1;
                 }else{
-                    C[i][j] = C[i][j-1];
-                    S[i][j] = 3;
+                    C[i+1][j+1] = Math.max(C[i][j+1], C[i+1][j]);
                 }
             }
         }
 
-        int[][][] ret = {C, S};
+        // read the substring out from the matrix
+        StringBuffer sb = new StringBuffer();
+        for(int x = X.length(), y = Y.length(); x != 0 && y != 0;){
+            if(C[x][y] == C[x-1][y]){
+                x--;
+            }else if(C[x][y] == C[x][y-1]){
+                y--;
+            }else{
+                // assertions are used to verify the correctness of an invariant in the code.
+                // They can be activated at run-time by way of the -ea option on the java command,
+                // but are not turned on by default.
+                assert X.charAt(x-1) == Y.charAt(y-1);
+                sb.append(X.charAt(x-1));
+                x--;
+                y--;
+            }
+        }
 
-        return ret;
+        String result =  sb.reverse().toString();
+        System.out.println(result);
+
+        return C;
     }
 
     // O(m+n)
@@ -87,11 +100,9 @@ public class LCS {
         String X = "ABCBDAB";
         String Y = "BDCABA";
 
-        int[][][] R = LCS.LCSLength(X, Y);
-        int[][] C = R[0];
-        int[][] S = R[1];
+        int[][] C = LCS.LCSLength(X, Y);
 
         System.out.println(C[X.length()][Y.length()]);
-        printLCS(S, X, X.length(), Y.length()); // BCBA
+        //printLCS(S, X, X.length(), Y.length()); // BCBA
     }
 }
