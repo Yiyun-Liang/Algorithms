@@ -32,7 +32,58 @@ public class LCS {
         Notice that not all subproblems are used in this problem
      */
 
-    // Bottom up approach, takes O(mn) time and space
+    // inefficient recursive solution, too many recursion calls
+    public static String LCSNaive(String a, String b){
+        int aLen = a.length();
+        int bLen = b.length();
+        if(aLen == 0 || bLen == 0){
+            return "";
+        }else if(a.charAt(aLen-1) == b.charAt(bLen-1)){
+            return LCSNaive(a.substring(0,aLen-1),b.substring(0,bLen-1))
+                    + a.charAt(aLen-1);
+        }else{
+            String x = LCSNaive(a, b.substring(0,bLen-1));
+            String y = LCSNaive(a.substring(0,aLen-1), b);
+            return (x.length() > y.length()) ? x : y;
+        }
+    }
+
+    // Top down with memoization
+
+    public static int LCSTopDown(String a, String b){
+        int m = a.length();
+        int n = b.length();
+
+        int[][] memo = new int[m+1][n+1];
+
+        for(int i = 1; i <= m; i++){
+            for(int j = 1; j <= n; j++){
+                memo[i][j] = -1;
+            }
+        }
+
+        return LCSTopDown(memo, a, b, a.length(), b.length());
+    }
+
+    public static int LCSTopDown(int[][] memo, String a, String b, int i, int j){
+        if(memo[i][j] > -1){  // >= 0
+            return memo[i][j];
+        }
+
+        if(i == 0 || j == 0){
+            memo[i][j] = 0;
+        }else{
+            if(a.charAt(i-1) == b.charAt(j-1)){
+                memo[i][j] = LCSTopDown(memo, a, b, i-1, j-1) + 1;
+            }else{
+                memo[i][j] = Math.max(LCSTopDown(memo, a, b, i-1, j), LCSTopDown(memo, a, b, i, j-1));
+            }
+        }
+
+        return memo[i][j];
+    }
+
+    // Bottom up approach, takes O(mn) time and space(for C table)
     public static int[][] LCSLength(String X, String Y){
         int m = X.length();
         int n = Y.length();
@@ -80,6 +131,23 @@ public class LCS {
         return C;
     }
 
+    // print without S table
+    // i and j are length-1 of X and Y respectively
+    public static void printLCS(int[][] C, String X, String Y, int i, int j){
+        if(i == 0 || j == 0){
+            return;
+        }
+
+        if(X.charAt(i) == Y.charAt(j)){
+            printLCS(C, X, Y, i, j);
+            System.out.print(X.charAt(i));
+        }else if(C[i-1][j] >= C[i][j-1]){
+            printLCS(C, X, Y, i-1, j);
+        }else{
+            printLCS(C, X, Y, i, j-1);
+        }
+    }
+
     // O(m+n)
     public static void printLCS(int[][] S, String X, int i, int j){
         if(i == 0 || j == 0){
@@ -100,9 +168,12 @@ public class LCS {
         String X = "ABCBDAB";
         String Y = "BDCABA";
 
-        int[][] C = LCS.LCSLength(X, Y);
+        String A = "10010101";
+        String B = "010110110";
 
-        System.out.println(C[X.length()][Y.length()]);
+        int[][] C = LCS.LCSLength(A, B);
+
+        System.out.println(C[A.length()][B.length()]);
         //printLCS(S, X, X.length(), Y.length()); // BCBA
     }
 }
