@@ -37,7 +37,18 @@ public class LongestIncreasingSeq {
 
 
     // in O(nlgn) time
+    public static int longMono(int[] num){
+        int[] B = new int[num.length];
+        for(int i = 0; i < num.length; i++){
+            B[i] = Integer.MIN_VALUE;
+        }
 
+        int[] C = new int[num.length];
+
+        for(int i = 0; i < num.length; i++){
+            if()
+        }
+    }
 
     public static void main(String[] args){
         int[] num = {1, 3, 5, 0, 1, 3, 5, 8, 3, 8, 9, 1, 5, 7, 9};  // 01358899
