@@ -37,17 +37,36 @@ public class LongestIncreasingSeq {
 
 
     // in O(nlgn) time
-    public static int longMono(int[] num){
-        int[] B = new int[num.length];
+    public static void longMono(int[] num){
+        int[] B = new int[num.length];  // contains the last value of
+        // a longest monotonically increasing subsequence of length i
         for(int i = 0; i < num.length; i++){
             B[i] = Integer.MIN_VALUE;
         }
 
+        // contains the monotonically increasing subsequence of length
+        // i with smallest last element seen so far
+        // an array of empty lists
         int[] C = new int[num.length];
 
+        int L = 1;
+
         for(int i = 0; i < num.length; i++){
-            if()
+            if(num[i] < B[0]){
+                B[0] = num[i];
+                //C[0].head.key = A[i]
+            }else{
+                int j = 0;
+                B[j+1] = num[i];
+                C[j+1] = C[j];
+                //C[j+1].insert(num[i])
+                if(j+1 > L){
+                    L++;
+                }
+            }
         }
+
+        System.out.println(C[L]);
     }
 
     public static void main(String[] args){
