@@ -119,11 +119,11 @@ public class DanceAround {
     public static void main(String[] args){
 
         // read from file
-        /*List<String> lines = null;
+        List<String> lines = null;
         String testcaseInputPath = System.getProperty("user.dir")
-                + "/src/com/isa/GoogleIO2016/DanceAroundTheClock/A-small-practice.in";
+                + "/src/com/isa/GoogleIO2016/DanceAroundTheClock/B-large-practice.in";
         String testcaseOutputPath = System.getProperty("user.dir")
-                + "/src/com/isa/GoogleIO2016/DanceAroundTheClock/A-small-practice.out";
+                + "/src/com/isa/GoogleIO2016/DanceAroundTheClock/B-large-practice.out";
 
         try{
             lines = Files.readAllLines(Paths.get(testcaseInputPath));
@@ -162,12 +162,12 @@ public class DanceAround {
                     output.toString().getBytes(), StandardOpenOption.CREATE);
         } catch (IOException e){
             e.printStackTrace();
-        }*/
+        }
 
-        Node d = dance(8, 3, 1);
+        /*Node d = dance(8, 3, 1);
         Node p = dance(4, 1, 8);
         Node q = dance(8, 4, 2);
         System.out.println(p.next.value);
-        System.out.println(p.prev.value);
+        System.out.println(p.prev.value);*/
     }
 }
