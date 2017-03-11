@@ -97,10 +97,13 @@ public class StoreSales {
         //int[] sales = separatePrices(prices2.length/2, prices2);
         // read from file
         List<String> lines = null;
-        String testcase = System.getProperty("user.dir")
-                + "/src/com/isa/GoogleIO2016/A-small-practice-StoreSales.in";
+        String testcaseInputPath = System.getProperty("user.dir")
+                + "/src/com/isa/GoogleIO2016/A-large-practice-StoreSales.in";
+        String testcaseOutputPath = System.getProperty("user.dir")
+                + "/src/com/isa/GoogleIO2016/A-large-practice-StoreSales.out";
+
         try{
-            lines = Files.readAllLines(Paths.get(testcase));
+            lines = Files.readAllLines(Paths.get(testcaseInputPath));
         }catch (IOException e){
             e.printStackTrace();
             System.exit(1);
@@ -132,7 +135,7 @@ public class StoreSales {
 
         // write to a file
         try{
-            Files.write(Paths.get("A-small-practice-StoreSales.out"),
+            Files.write(Paths.get(testcaseOutputPath),
                     output.toString().getBytes(), StandardOpenOption.CREATE);
         } catch (IOException e){
             e.printStackTrace();
