@@ -94,7 +94,6 @@ public class StoreSales {
         int[] prices = {15, 20, 60, 75, 80, 100};
         int[] prices2 = {9, 9, 12, 12, 12, 15, 16, 20};
 
-        //int[] sales = separatePrices(prices2.length/2, prices2);
         // read from file
         List<String> lines = null;
         String testcaseInputPath = System.getProperty("user.dir")
@@ -140,5 +139,20 @@ public class StoreSales {
         } catch (IOException e){
             e.printStackTrace();
         }
+
+        /*
+            An alternative way of reading from a file with BufferReader
+            by reading the filename from command line
+
+            $ MY_PROGRAM < small_input.txt > small_output.txt
+
+            Scanner in = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
+            int t = in.nextInt();  // Scanner has functions to read ints, longs, strings, chars, etc.
+            for (int i = 1; i <= t; ++i) {
+              int n = in.nextInt();
+              int m = in.nextInt();
+              System.out.println("Case #" + i + ": " + (n + m) + " " + (n * m));
+            }
+         */
     }
 }
