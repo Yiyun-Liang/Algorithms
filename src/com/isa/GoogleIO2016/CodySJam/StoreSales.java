@@ -1,4 +1,4 @@
-package com.isa.GoogleIO2016;
+package com.isa.GoogleIO2016.CodySJam;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
