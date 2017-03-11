@@ -1,5 +1,13 @@
 package com.isa.GoogleIO2016;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.*;
+
 /**
  * Created by isa on 2017-03-09.
  */
@@ -44,4 +52,90 @@ public class StoreSales {
         4
         9 9 12 12 12 15 16 20
      */
+
+    public static int[] separatePrices(int numItems, int[] prices){
+
+        Map<Integer, Integer> map = new HashMap<>();
+        int[] salePrices = new int[numItems];  // need to be in increasing order
+        int count = 0;
+
+        for(int i = 0; i < prices.length; i++){
+            int price = prices[i];
+            int sale = price/4*3;
+            if(price%4 == 0 && map.containsKey(sale)){
+                int val = map.get(sale);
+
+                salePrices[count] = sale;
+
+                if(val == 1) {
+                    map.remove(sale);
+                } else {
+                    map.put(sale, map.get(sale)-1);
+                }
+
+                count++;
+                continue;
+            }
+
+            if(map.containsKey(price)){                // can probably be combined into one statement?
+                map.put(price, map.get(price)+1); // auto-boxing
+            }else{
+                map.put(price, 1);
+            }
+        }
+
+        Arrays.sort(salePrices);
+
+        return salePrices;
+    }
+
+    public static void main(String[] args){
+
+        int[] prices = {15, 20, 60, 75, 80, 100};
+        int[] prices2 = {9, 9, 12, 12, 12, 15, 16, 20};
+
+        //int[] sales = separatePrices(prices2.length/2, prices2);
+        // read from file
+        List<String> lines = null;
+        String testcase = System.getProperty("user.dir")
+                + "/src/com/isa/GoogleIO2016/A-small-practice-StoreSales.in";
+        try{
+            lines = Files.readAllLines(Paths.get(testcase));
+        }catch (IOException e){
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        int numCases = Integer.parseInt(lines.get(0));
+        StringBuilder output = new StringBuilder();
+
+        for(int i = 1; i < lines.size(); i+=2){
+            // numItems
+            int numItems = Integer.parseInt(lines.get(i));
+            // int array of mixed prices
+            String pricesString = lines.get(i+1);
+            String[] mixedPrices = pricesString.split("\\s+"); // split using whitespace as delimiter
+            int[] intPrices = new int[mixedPrices.length];
+            for(int j = 0; j < mixedPrices.length; j++) {
+                intPrices[j] = Integer.parseInt(mixedPrices[j]);
+            }
+
+            int[] salesPrices = separatePrices(numItems, intPrices);
+            StringBuilder sb = new StringBuilder();
+            for(int p: salesPrices){
+                sb.append(p);
+                sb.append(" ");
+            }
+            output.append(String.format("Case #%d: %s\n", i/2+1, sb.toString()));
+        }
+
+
+        // write to a file
+        try{
+            Files.write(Paths.get("A-small-practice-StoreSales.out"),
+                    output.toString().getBytes(), StandardOpenOption.CREATE);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 }
