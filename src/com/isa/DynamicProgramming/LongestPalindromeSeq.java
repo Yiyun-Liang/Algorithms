@@ -15,6 +15,12 @@ public class LongestPalindromeSeq {
         return "";
     }
 
+    /*
+        Another approach O(n^3)
+
+        split the string at 0 ~ n-1, position i, then use lcs for each subproblems
+     */
+
     public static void main(String[] args){
         lps("character");
     }
