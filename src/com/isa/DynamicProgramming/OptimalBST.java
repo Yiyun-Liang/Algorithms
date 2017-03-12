@@ -29,11 +29,13 @@ public class OptimalBST {
            cost[0][n-1] will store the resultant cost */
         double[][] cost = new double[n][n]; // 0 ~ n-1
         double[][] sum = new double[n][n];
+        int[][] root = new int[n][n];
 
         // initialize sum
         for(int i = 0; i < n; i++){
             cost[i][i] = probs[i] + dummyProbs[i] + probs[i+1];
             sum[i][i] = probs[i] + dummyProbs[i] + probs[i+1];
+            //root[i][i] = i;
         }
 
         for(int l = 2; l <= n; l++){   // chain length we are dealing with in this cycle
@@ -48,11 +50,40 @@ public class OptimalBST {
 
                     if(c < cost[i][j]){
                         cost[i][j] = c;
+                        root[i][j] = r;
                     }
                 }
             }
         }
 
         return cost[0][n-1];
+
+        // or return cost and root
+    }
+
+    static class Node{
+        int key;
+        Node left;
+        Node right;
+
+        Node(int key){
+            this.key = key;
+        }
+    }
+
+    // this is constructing an optimal BST based on dp solution above
+    public static Node constructOptimalBST(int[][] root, int i, int j){
+
+        if(i == j){
+            return new Node(i);
+        }
+
+        int r = root[i][j];
+        Node n = new Node(r);
+
+        n.left = constructOptimalBST(root, i, r-1);
+        n.right = constructOptimalBST(root, r+1, j);
+
+        return n;
     }
 }
