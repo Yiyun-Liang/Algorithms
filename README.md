@@ -1,5 +1,7 @@
 # Algorithms
 
+Some practice problems and notes I have been keeping while I am learning
+algorithms and data structures.
 
 # Random Notes
 
