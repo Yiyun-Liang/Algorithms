@@ -205,6 +205,9 @@ public class Java8Stream {
         streamSupplier.get().noneMatch(s -> true);  // ok
 
         // 7. collect, flatMap, reducd
+        // COLLECT:
+        // Collect is an extremely useful terminal operation to transform the elements
+        // of the stream into a different kind of result, e.g. a List, Set or Map
         List<Person> persons =
                 Arrays.asList(
                         new Person("Max", 18),
