@@ -7,8 +7,8 @@ public class Main {
 
     /*
         Two ingradients of dp problems:
-            1) optimal subproblems
-            2) overlapping subproblems
+            1) optimal subproblems - independent sub problems
+            2) overlapping subproblems - to apply memoization
      */
 
     public static void main(String[] args){
