@@ -357,6 +357,79 @@ public class Java8Stream {
                 .flatMap(n -> Optional.ofNullable(n.inner))
                 .flatMap(i -> Optional.ofNullable(i.foo))
                 .ifPresent(System.out::println);
+
+
+        // REDUCE
+
+        // reduce to one element
+        // oldest person
+        persons
+                .stream()
+                .reduce((p1, p2) -> p1.age > p2.age ? p1 : p2)
+                .ifPresent(System.out::println);    // Pamela
+
+        // The reduce method accepts a BinaryOperator accumulator function.
+        // That's actually a BiFunction where both operands share the same type,
+        // in that case Person. BiFunctions are like Function but accept two arguments.
+        // The example function compares both persons ages in order to return the person with the maximum age.
+        Person result =
+                persons
+                        .stream()
+                        .reduce(new Person("", 0), (p1, p2) -> {
+                            p1.age += p2.age;
+                            p1.name += p2.name;
+                            return p1;
+                        });
+
+        System.out.format("name=%s; age=%s", result.name, result.age);  // same as printf
+        System.out.println();
+        // name=MaxPeterPamelaDavid; age=76
+
+        Integer ageSum = persons
+                .stream()
+                .reduce(0, (sum, p) -> sum += p.age, (sum1, sum2) -> sum1 + sum2);
+
+        System.out.println(ageSum);  // 76
+
+        // under the hood
+        Integer ageSumDebugging = persons
+                .stream()
+                .reduce(0,
+                        (sum, p) -> {
+                            System.out.format("accumulator: sum=%s; person=%s\n", sum, p);
+                            return sum += p.age;
+                        },
+                        (sum1, sum2) -> {
+                            System.out.format("combiner: sum1=%s; sum2=%s\n", sum1, sum2);
+                            return sum1 + sum2;
+                        });
+
+        // accumulator: sum=0; person=Max
+        // accumulator: sum=18; person=Peter
+        // accumulator: sum=41; person=Pamela
+        // accumulator: sum=64; person=David
+
+        // combiner never called?
+        Integer ageSumParallel = persons
+                .parallelStream()
+                .reduce(0,
+                        (sum, p) -> {
+                            System.out.format("accumulator: sum=%s; person=%s\n", sum, p);
+                            return sum += p.age;
+                        },
+                        (sum1, sum2) -> {
+                            System.out.format("combiner: sum1=%s; sum2=%s\n", sum1, sum2);
+                            return sum1 + sum2;
+                        });
+
+        // accumulator: sum=0; person=Pamela
+        // accumulator: sum=0; person=David
+        // accumulator: sum=0; person=Max
+        // accumulator: sum=0; person=Peter
+        // combiner: sum1=18; sum2=23
+        // combiner: sum1=23; sum2=12
+        // combiner: sum1=41; sum2=35
+
     }
 
     static class Person {
