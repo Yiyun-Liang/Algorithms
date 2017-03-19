@@ -1,7 +1,6 @@
 package com.isa;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.*;
 
@@ -194,7 +193,7 @@ public class Java8Stream {
                         .filter(s -> s.startsWith("a"));
 
         stream.anyMatch(s -> true);    // ok
-        stream.noneMatch(s -> true);   // exception
+        //stream.noneMatch(s -> true);   // exception
 
         // to overcome this limitation
         Supplier<Stream<String>> streamSupplier =
@@ -214,6 +213,89 @@ public class Java8Stream {
                         new Person("Peter", 23),
                         new Person("Pamela", 23),
                         new Person("David", 12));
+
+        List<Person> filtered =
+                persons
+                        .stream()
+                        .filter(p -> p.name.startsWith("P"))
+                        .collect(Collectors.toList());  // Collectors.toSet()
+
+        System.out.println(filtered);    // [Peter, Pamela]
+
+        List<Integer> ints = Arrays.asList(19, 20, 19, 17);
+
+        Set<Integer> set =
+                ints
+                        .stream()
+                        .filter(i -> i.equals(19))
+                        .collect(Collectors.toSet());
+
+        System.out.println("set: " + set);    // [19]  no duplicates in set
+
+        // so gao ji
+        Map<Integer, List<Person>> personsByAge = persons
+                .stream()
+                .collect(Collectors.groupingBy(p -> p.age));
+
+        personsByAge
+                .forEach((age, p) -> System.out.format("age %s: %s\n", age, p));
+
+        // age 18: [Max]
+        // age 23: [Peter, Pamela]
+        // age 12: [David]
+
+        // statistics
+        double averageAge = persons
+                .stream()
+                .collect(Collectors.averagingInt(p -> p.age));
+
+        System.out.println(averageAge);     // 19.0
+
+        IntSummaryStatistics ageSummary =
+                persons
+                        .stream()
+                        .collect(Collectors.summarizingInt(p -> p.age));
+
+        System.out.println(ageSummary);
+        // IntSummaryStatistics{count=4, sum=76, min=12, average=19.000000, max=23}
+
+        // join
+        String phrase = persons
+                .stream()
+                .filter(p -> p.age >= 18)
+                .map(p -> p.name)
+                // joining(delimiter, optional prefix, optional suffix)
+                .collect(Collectors.joining(" and ", "In Germany ", " are of legal age."));
+
+        System.out.println(phrase);
+        // In Germany Max and Peter and Pamela are of legal age.
+
+        // to map
+        Map<Integer, String> map = persons
+                .stream()
+                .collect(Collectors.toMap(
+                        p -> p.age,
+                        p -> p.name,
+                        // since keys must be unique(eg.23), we can pass a optional merge function to handle conflict
+                        (name1, name2) -> name1 + ";" + name2));
+
+        System.out.println(map);
+        // {18=Max, 23=Peter;Pamela, 12=David}
+
+        // build our own collector functions
+        Collector<Person, StringJoiner, String> personNameCollector =
+                Collector.of(  // use this to create a custom collector
+                        // since strings are immutable in java, need this stringjoiner to perform joining
+                        () -> new StringJoiner(" | "),          // supplier
+                        (j, p) -> j.add(p.name.toUpperCase()),  // accumulator
+                        (j1, j2) -> j1.merge(j2),               // combiner
+                        StringJoiner::toString);                // finisher
+
+        String names = persons
+                .stream()
+                .collect(personNameCollector);
+
+        System.out.println(names);  // MAX | PETER | PAMELA | DAVID
     }
 
     static class Person {
