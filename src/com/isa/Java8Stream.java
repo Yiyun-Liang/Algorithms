@@ -1,6 +1,7 @@
 package com.isa;
 
 import java.util.*;
+import java.util.concurrent.ForkJoinPool;
 import java.util.function.Supplier;
 import java.util.stream.*;
 
@@ -429,6 +430,67 @@ public class Java8Stream {
         // combiner: sum1=18; sum2=23
         // combiner: sum1=23; sum2=12
         // combiner: sum1=41; sum2=35
+
+
+        // 8. Parallel Stream
+        // Streams can be executed in parallel to increase runtime performance on large amount
+        // of input elements. Parallel streams use a common ForkJoinPool available via the static
+        // ForkJoinPool.commonPool() method. The size of the underlying thread-pool uses up to
+        // five threads - depending on the amount of available physical CPU cores:
+
+        ForkJoinPool commonPool = ForkJoinPool.commonPool();
+        System.out.println(commonPool.getParallelism());    // 3 by default
+        // can be decreased or increased by setting the following JVM parameter
+        // -Djava.util.concurrent.ForkJoinPool.common.parallelism=5
+
+        Arrays.asList("a1", "a2", "b1", "c2", "c1")
+                .parallelStream()
+                .filter(s -> {
+                    System.out.format("filter: %s [%s]\n",
+                            s, Thread.currentThread().getName());
+                    return true;
+                })
+                .map(s -> {
+                    System.out.format("map: %s [%s]\n",
+                            s, Thread.currentThread().getName());
+                    return s.toUpperCase();
+                })
+                .forEach(s -> System.out.format("forEach: %s [%s]\n",
+                        s, Thread.currentThread().getName()));
+
+        /*
+            The output may differ in consecutive runs because the behavior which particular
+            thread is actually used is non-deterministic.
+
+            filter: a2 [ForkJoinPool.commonPool-worker-2]
+            map: a2 [ForkJoinPool.commonPool-worker-2]
+            forEach: A2 [ForkJoinPool.commonPool-worker-2]
+            filter: b1 [main]
+            map: b1 [main]
+            filter: c1 [ForkJoinPool.commonPool-worker-1]
+            filter: a1 [ForkJoinPool.commonPool-worker-3]
+            map: a1 [ForkJoinPool.commonPool-worker-3]
+            map: c1 [ForkJoinPool.commonPool-worker-1]
+            forEach: C1 [ForkJoinPool.commonPool-worker-1]
+            forEach: B1 [main]
+            filter: c2 [ForkJoinPool.commonPool-worker-2]
+            forEach: A1 [ForkJoinPool.commonPool-worker-3]
+            map: c2 [ForkJoinPool.commonPool-worker-2]
+            forEach: C2 [ForkJoinPool.commonPool-worker-2]
+         */
+
+        // above operation may be different when .sorted is added
+
+        // In summary, it can be stated that parallel streams can bring be a nice performance boost
+        // to streams with a large amount of input elements.
+        // But keep in mind that some parallel stream operations
+        // like reduce and collect need additional computations (combine operations)
+        // which isn't needed when executed sequentially.
+
+        // Furthermore we've learned that all parallel stream operations share the same JVM-wide
+        // common ForkJoinPool. So you probably want to avoid implementing slow blocking
+        // stream operations since that could potentially slow down other parts of your
+        // application which rely heavily on parallel streams.
 
     }
 
