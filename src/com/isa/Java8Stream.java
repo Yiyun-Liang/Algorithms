@@ -494,6 +494,7 @@ public class Java8Stream {
 
     }
 
+    // used by collect
     static class Person {
         String name;
         int age;
@@ -509,6 +510,7 @@ public class Java8Stream {
         }
     }
 
+    // used by flatmap
     static class Foo {
         String name;
         List<Bar> bars = new ArrayList<>();
@@ -526,6 +528,7 @@ public class Java8Stream {
         }
     }
 
+    // multiple inheritance
     static class Outer {
         Nested nested;
     }
