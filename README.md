@@ -19,3 +19,13 @@ algorithms and data structures.
 
 ### Performance
 + multiplication vs. bit shifting: some compilers optimizes multiplication to bit shifting. For us, sometimes optimization compromises readability so choose wise.
+
+
+### Truly Random Notes
+- instead of using a dynamic array, can use a stack sometimes
+
+
+### Getting Better
+leetcode, topCoder, career cup, high scalability, Github GitBook (eg. coding interview university), Tech Blogs (eg. [cenalulu](http://cenalulu.github.io/)), 一亩三分地, 米群网
+
+industrial coding conventions, readability, concise, reusability, speed, edge case, bug free
