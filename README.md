@@ -26,6 +26,6 @@ algorithms and data structures.
 
 
 ### Getting Better
-leetcode, topCoder, career cup, high scalability, Github GitBook (eg. coding interview university), Tech Blogs (eg. [cenalulu](http://cenalulu.github.io/)), 一亩三分地, 米群网
+leetcode, topCoder, career cup, high scalability, Github GitBook (eg. coding interview university), Tech Blogs (eg. [cenalulu](http://cenalulu.github.io/)), 一亩三分地, 米群网, codeforce
 
 industrial coding conventions, readability, concise, reusability, speed, edge case, bug free
