@@ -54,11 +54,57 @@ public class BasicOps {
             ! as we travel down from the root, we split each full node we come to along the way,
             so that whenever we want to split a full node y, we are assured that its parent is not full.
      */
+    public void insert(Node root, int key, int t){
+        // check if root node is full
+        // if yes, then create an empty root node, then split original root node
+        // if not, proceed to use the normal insert method
+        if(root.n == (2*t-1)){
+            Node s = new Node();
+            root = s;
+            s.leaf = false;
+            s.n = 0;
+            s.c[0] = root;
+            splitChild(s, 0, t);
+            insertNonFull(s, key, t);
+        }else{
+            insertNonFull(root, key, t);
+        }
+    }
+
+    public void insertNonFull(Node x, int key, int t){
+        int i = x.n-1;
+        // if x is already a leaf node, find position for key, move keys to the back at the same time
+        if(x.leaf){
+            while(i >= 0 && x.keys[i] > key){
+                x.keys[i+1] = x.keys[i];
+                i--;
+            }
+            x.keys[i+1] = key;
+            x.n++;
+            // disk-write(x) because x is changed
+        }else{
+            while(i >=0 && x.keys[i] > key){
+                i--;
+            }
+            i++;
+            // disk-read(x.c[i])
+
+            // if the children key is going to along this way is full, split this child
+            if(x.c[i].n == 2*t-1){
+                splitChild(x, i, t);  // split x's ith child
+                if(key > x.keys[i]){  // after splitting, x.keys[i] is the newly promoted median node from x.c[i]
+                    i++;
+                }
+            }
+            insertNonFull(x.c[i], key, t);
+        }
+    }
 
     /*
         Split:
             takes a non-full internal node x, and a index i such that x.ci is a full child of x
             create a new node first, etc
+            takes O(t) time and performs O(1) disk operation
 
             t is not necessarily a parameter, it is part of the attribute of the tree
      */
@@ -97,4 +143,6 @@ public class BasicOps {
         x.n++;
         //DISK-WRITE(y, z, x);
     }
+
+
 }
