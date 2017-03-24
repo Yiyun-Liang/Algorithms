@@ -53,6 +53,12 @@ public class BasicOps {
             same as bst insertion, we insert a key on a single pass from root to a leaf,
             ! as we travel down from the root, we split each full node we come to along the way,
             so that whenever we want to split a full node y, we are assured that its parent is not full.
+
+            takes O(th) = O(tlgn): lg base t time
+            performs O(h) disk accesses
+
+            insertNonFull is tail-recursive,
+            so the number of pages that need to be in main memory at any time is O(1)
      */
     public void insert(Node root, int key, int t){
         // check if root node is full
@@ -93,7 +99,7 @@ public class BasicOps {
             if(x.c[i].n == 2*t-1){
                 splitChild(x, i, t);  // split x's ith child
                 if(key > x.keys[i]){  // after splitting, x.keys[i] is the newly promoted median node from x.c[i]
-                    i++;
+                    i++; // need to check against this newly promoted node
                 }
             }
             insertNonFull(x.c[i], key, t);
