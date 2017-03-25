@@ -150,5 +150,9 @@ public class BasicOps {
         //DISK-WRITE(y, z, x);
     }
 
+    /*
+        Deletion:
+        
+     */
 
 }
