@@ -5,7 +5,7 @@ package com.isa.BinaryTree;
  */
 public class Main {
     /*
-        Definitions: - height = levels - 1
+        Definitions: height = levels - 1
             1) Full Binary Tree - every node other then the leaves has two children (levels are not necessarily filled)
                                 - every node has 0 or 2 children
                                 - num nodes: at least n = 2h + 1, at most n = 2^(h+1) - 1
@@ -21,5 +21,10 @@ public class Main {
                                        - for a node with key k,
                                          every key in the left subtree is less than k and
                                          every key in the right subtree is greater than k.
+
+        ancestor: u is on the simple path from root to v, u is v's ancestor
+        descendant: v is u's descendant
+        predecessor: immediately smaller one
+        successor: immediately bigger one
      */
 }
