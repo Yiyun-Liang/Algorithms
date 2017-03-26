@@ -25,12 +25,22 @@ public class GraphHelper {
         of v
      */
 
+    public static final int WHITE = 1;
+    public static final int BLACK = 2;
+    public static final int GRAY = 3;
 
     class Vertex{
         int k;
         int color;
-        int d;  // distance from source vertex to this vertex
         Vertex p;  // predecessor of this vertex, null if no predecessor
+
+        // used only in bfs
+        int d;  // distance from source vertex to this vertex
+
+        // used only in dfs
+        // values between 1 and 2|V|
+        int s;  // first time the vertex is grayed, discovery time
+        int f;  // first time the vertex is blackened, finishing time
     }
 
     private final int V;  // number of vertices
