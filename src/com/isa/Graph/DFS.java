@@ -21,6 +21,12 @@ public class DFS {
 
             return a depth-first forest comprising several depth-first trees
             A tree is a connected graph with no cycles.  A forest is a bunch of trees(may not be connected).
+
+        Properties:
+        1) valuable info about the structure of the graph, recursion trees
+        2) discovery time and finishing time have parenthesis structure
+
+        p609 for different types of edges classified during a DFS
      */
     public int time;  // global time
 
@@ -43,7 +49,7 @@ public class DFS {
     public void depthFirstSearch(GraphHelper G, Vertex v){
         time++;  // white vertex v has just been discovered
         v.s = time;
-        v.color = GRAY;
+        v.color = GRAY;  // can be removed
 
         for(Vertex u: G.adj(v.k)){  // go deeper
             if(u.color == WHITE){

@@ -41,6 +41,9 @@ public class GraphHelper {
         // values between 1 and 2|V|
         int s;  // first time the vertex is grayed, discovery time
         int f;  // first time the vertex is blackened, finishing time
+
+        // used in finding number of simple paths from u to v
+        int paths;
     }
 
     private final int V;  // number of vertices
