@@ -152,7 +152,60 @@ public class BasicOps {
 
     /*
         Deletion:
-        
+            Several scenarios
+
+
+10: end if
+11: i = 1
+12: while x.keyi < k do
+13: i = i + 1
+14: end while
+15: if x.keyi == k then // If k is in node x at position i
+16: DISK-READ(x.ci)
+17: if x.ci
+.n ≥ t then
+18: k
+0 = P RED(k, x.ci)
+19: x.keyi = k
+0
+20: DISK-WRITE(x)
+21: B-TREE-DELETE(
      */
+
+    public void delete(Node x, int k, int t){
+        // x is a leaf
+        if(x.leaf){
+            for(int i = 0; i < x.n; i++){
+                if(x.keys[i] == k){
+                    deleteFromLeaf(x, i);
+                    x.n--;
+                    // DISK-WRITE(x)
+                    return;
+                }
+            }
+        }
+
+        // x is an internal node
+        int i = 0;
+        while(x.keys[i] < k){
+            i++;
+        }
+        // k is in node x at position i
+        if(x.keys[i] == k){
+            // DISK-READ(x, ci)
+            if(x.c[i].n >= t){
+                // unfinished
+            }
+        }
+    }
+
+    public void deleteFromLeaf(Node x, int index){
+        for(int i = index+1; i < x.n ; i++){
+            x.keys[i-1] = x.keys[i];  // move the succeeding keys forward one position
+        }
+        // adjust parent
+    }
+
+
 
 }
