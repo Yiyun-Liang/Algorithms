@@ -26,6 +26,8 @@ public class Graph {
                 - prefer to be represented as a collection of adjacency-matrix
                     - able to tell quickly if there is an edge connecting two given vertices
 
+            1) multigraph: permitted to have mutiple edges(parallel edges) for two end nodes (u,v)
+
 
          Representations of Graphs: P560 of Introduction to Algorithms
             1) adjacency list
@@ -67,7 +69,12 @@ public class Graph {
                 - disadvantages: more space/memory needed (use it for smaller graphs)
                 - advantages: one bit per entry for undirected graphs, simpler
 
+            3) incidence matrix with size |V|*|E| such that B = bij such that
+                bij = -1 if edge j leaves vertex i
+                    = 1  if edge j enters vertex i
+                    = 0 otherwise
 
+            A transpose of a directed graph: reversing all edges
 
      */
 
