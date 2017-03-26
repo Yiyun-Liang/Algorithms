@@ -23,6 +23,22 @@ algorithms and data structures.
 
 ### Truly Random Notes
 - instead of using a dynamic array, can use a stack sometimes
+- base case for small data set(<=3), call use brute force solution 
+- sorting optimized to O(n)
+- return min(A, B, C)
+- places where master algorithm cannot be applied, find O(?)
+- double for loop can be O(n) rather than O(n^2) if second for loop has more
+  conditions
+- 1 xor 2 xor 1 = 2
+- insert/access to map in Java
+- in C, it is O(lgn) for ordered map(internally uses a red-black tree), and
+  O(1) or unordered map = hashmap
+- interview: naive solutions handle edge cases
+- non dp fibonacci: T(n) = T(n-1) + T(n-2) + O(1) = O(n^2)
+
+#### Linkedlist
+- deletion is O(1) in doubly linked list
+- but can also be O(1) in singly linked list if we copy content of next node to current and then remove the next node in O(1)
 
 
 ### Getting Better
