@@ -45,3 +45,6 @@ algorithms and data structures.
 leetcode, topCoder, career cup, high scalability, Github GitBook (eg. coding interview university), Tech Blogs (eg. [cenalulu](http://cenalulu.github.io/)), 一亩三分地, 米群网, codeforce
 
 industrial coding conventions, readability, concise, reusability, speed, edge case, bug free
+
+### References
+[Solutions to CLRS](http://www.math.rutgers.edu/~ajl213/CLRS/CLRS.html)
