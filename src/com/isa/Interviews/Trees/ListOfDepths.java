@@ -14,7 +14,8 @@ public class ListOfDepths {
     // binary tree node
     static class Node{
         int key;
-        Node[] children;
+        Node left;
+        Node right;
 
         Node(int key){
             this.key = key;
@@ -42,8 +43,12 @@ public class ListOfDepths {
             current = new LinkedList<>();
 
             for(Node parent: parents){
-                for(Node child: parent.children){
-                    current.add(child);
+                if(parent.left != null){
+                    current.add(parent.left);
+                }
+
+                if(parent.right != null){
+                    current.add(parent.right);
                 }
             }
         }
@@ -69,12 +74,13 @@ public class ListOfDepths {
         }
 
         list.add(root);
-        result.add(depth, list);  // java.util.ArrayList.add(int index, E elemen), add to index
+        // below not need because pass by reference, actual list in result is already changed
+        //result.add(depth, list);  // java.util.ArrayList.add(int index, E elemen), add to index
 
-        for(Node child: root.children){
-            depth++;
-            listOfDepth(child, result, depth);
-        }
+        // no need to check if root.left == null, because this function checks it
+        listOfDepth(root.left, result, depth+1);
+        listOfDepth(root.right, result, depth+1);
+
     }
 
 
