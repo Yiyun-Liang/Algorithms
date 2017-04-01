@@ -48,7 +48,12 @@ class Graph{
 class Node{
 	String name;
 	Node[] adj;
+	boolean visited; // or State state; 
 }
+
+public enum State {
+	Unvisited, Visited, Visiting;
+} 
 ```
 
 ##### adjacency matrices:
@@ -63,9 +68,13 @@ class Node{
 
 ```
 // recursive
-// first set all nodes to unvisted 
 void DFS(Graph G, Node n){
 	if(n == null) return;  // check
+	
+	// first set all nodes to unvisted 
+	for(Node u : G.getNodes()){
+		u.visited = false;
+    }
 	
 	visit(n);
 	n.visited = true;
@@ -85,6 +94,12 @@ void DFS(Graph G, Node n){
 // iterative
 void BFS(Graph G, Node n){  
 	Queue<Node> queue = new Linkedlist<>();
+	
+	// first set all nodes to unvisted 
+	for(Node u : G.getNodes()){
+		u.visited = false;
+    }
+	
 	n.visited = true;
 	queue.add(n);  // because its a linkedlist implementation of quque
 	
