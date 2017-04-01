@@ -1,9 +1,9 @@
-package com.isa.Interviews.TreesAndGraphs;
+package com.isa.Interviews.Trees;
 
 /**
  * Created by isa on 2017-04-01.
  */
-public class MinmalTree {
+public class MinimalBST {
     /*
         Given a sorted (increasing order) array with unique integer elements,
         write an algorithm to create a binary search tree with minimal height.

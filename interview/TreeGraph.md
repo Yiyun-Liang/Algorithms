@@ -3,6 +3,7 @@
 - a connected graph without cycles
 
 - typically only need a node class, don't need a tree class
+- check if the node is null before calling its attributes like left, right, parent
 
 #### Binary trees
 
