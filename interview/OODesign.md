@@ -85,3 +85,5 @@ public class CardGame {	public static CardGame createCardGame(GameType type) {
 
 ### Practice
 [OO Design](https://github.com/Yiyun-Liang/Algorithms/tree/master/src/com/isa/Interviews/OODesign)
+
+- make general types that will be inherited abstract (eg. card, employee)
