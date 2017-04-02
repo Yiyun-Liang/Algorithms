@@ -123,3 +123,9 @@ void BFS(Graph G, Node n){
 - ***running two simultaneous BFS, one from each node, when their searches collide, we have found a path***
 - eg. "A-B-C-D-E" between node A and node E, after 2 levels each, 4 levels total, their searches collide at node C
 - faster than BFS(4 levels for the example above) because if each node has at most k adj nodes and A and B are at distance d, then in BFS, in the first level, we search for k nodes, in the second level, we search for k^2 nodes, thus we have to search for k^d nodes. But in BS, we only need to search for k^(d/2)+k^(d/2) =  O(k^(d/2)) nodes which is k^(d/2) times faster.
+
+
+#### Practice
+[Trees](https://github.com/Yiyun-Liang/Algorithms/tree/master/src/com/isa/Interviews/Trees)
+
+[Graphs](https://github.com/Yiyun-Liang/Algorithms/tree/master/src/com/isa/Interviews/Graphs)
