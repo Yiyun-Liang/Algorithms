@@ -48,3 +48,4 @@ industrial coding conventions, readability, concise, reusability, speed, edge ca
 
 ### References
 [Solutions to CLRS](http://www.math.rutgers.edu/~ajl213/CLRS/CLRS.html)
+[Solutions to CTCI](https://github.com/careercup/CtCI-6th-Edition)
