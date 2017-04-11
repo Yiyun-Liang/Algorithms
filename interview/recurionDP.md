@@ -28,3 +28,5 @@ All recursive algorithms can be implemented iteratively.
 - discuss tradeoff with interviewer
 
 ### DP
+
+- implement recursive solution, then add memoization
