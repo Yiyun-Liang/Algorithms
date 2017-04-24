@@ -14,6 +14,7 @@ return new String(arr);
 ```
 String[][] pairs = {{"apple", "pleap"}, {"waterbottle", "erbottlewat"}, {"camera", "macera"}};
 ```
+- for(char c : word.toCharArray()) instead of charAt(i) where i = 0 to word.length()
 
 ### Linked Lists
 
