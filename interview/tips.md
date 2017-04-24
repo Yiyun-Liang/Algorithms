@@ -24,6 +24,8 @@ int code(char c){
 
 - find path
   - if recursion, keep an arraylist of points(row,col), and keep adding to it
+- iterate
+  - sometimes, keep an additional boolean[][] visited array to avoid recounting a cell that has already been counted
 
 ##### Lines and Graphs
 
