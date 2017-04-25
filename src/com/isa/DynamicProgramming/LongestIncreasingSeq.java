@@ -34,12 +34,39 @@ public class LongestIncreasingSeq {
         int[][] lcs = LCS.LCSLength(sb2.toString(), sb.toString());
         return lcs[num.length][num.length];
     }
+    
+    // Another O(n^2) solution not using lcs, memoized version
+    public static void incSeq(int[] num){
+        int n = num.length;
+        int[] lis = new int[n];  // length of the longest seq ending with num[i]
+        
+        for(int i = 0; i < n; i++){
+            lis[i] = 1;
+        }
+        
+        for(int i = 1; i < n; i++){
+            for(int j = 0; j < i; j++){
+                if(num[i] > num[j] && lis[i] < lis[j]+1){
+                    lis[i] = lis[j] + 1;
+                }
+            }
+        }
+        
+        int maxLen = 0;
+        for(int i = 0; i < n; i++){
+            if(lis[i] > maxLen){
+                maxLen = lis[i];
+            }
+        }
+        
+        return maxLen;
+    }
 
 
     // in O(nlgn) time
     public static void longMono(int[] num){
         int[] B = new int[num.length];  // contains the last value of
-        // a longest monotonically increasing subsequence of length i
+        // a longest monotonically increasing subsequence of length i, same as above
         for(int i = 0; i < num.length; i++){
             B[i] = Integer.MIN_VALUE;
         }
