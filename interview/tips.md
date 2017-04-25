@@ -37,3 +37,8 @@ int code(char c){
   - y intercept = a.y - slope * a.x  -> y=mx+b -> b = y-mx
 - completely vertical line have infinite slope, be careful
 
+##### General
+
+- subarray: contiguous subarray?
+- subsequent: elements whose subscripts are increasing in the original sequence
+- subset: any possible combinations of original set
