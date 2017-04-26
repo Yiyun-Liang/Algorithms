@@ -5,6 +5,7 @@ package com.isa;
  */
 
 // linear time shuffling, uniformly random permutation
+// randomly give one permutation of a sequence (likelihood of each permutation to occur is equal)
 // eg. poker game
 public class KnuthShuffle {
 
@@ -32,6 +33,25 @@ public class KnuthShuffle {
             arr[i] = arr[j];
             arr[j] = temp;
         }
+    }
+    
+    // useful method
+    public int rand(int lower, int upper){
+        return lower + Math.random()*(upper-lower+1);
+    }
+    
+    public static void shuffleRecursive(Object[] arr, int n){
+        if(n==0) return arr;
+        
+        shuffleRecursive(arr, n-1);
+        int k = rand(0, n);
+        
+        //swap
+        Object temp = arr[k];
+        arr[k] = arr[n];
+        arr[n] = temp;
+        
+        return arr;
     }
 
     /**
