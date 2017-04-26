@@ -63,3 +63,7 @@ public int longestIncreasingPath(int[][] matrix) {
             return tempMax;
         }
     }
+
+// approach 3
+// http://www.allenlipeng47.com/blog/index.php/2016/01/22/longest-increasing-path-in-a-matrix/
+// idea: find longest path in a directed graph by removing nodes that have out degree of zero, the number of iterations is the length of the path
