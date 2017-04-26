@@ -21,6 +21,13 @@ int code(char c){
 - often, may need a class to store result that contains multiple values
 - when using a hashmap on a char or int, can choose to use an array
 - preprocessing is an option for processing or scanning type of questions, discuss with interviewer to see if we want to do the task multiple times.
+- use enums (eg. operators in stack)
+
+```
+public enum Operator {
+    ADD, SUBTRACT, MULTIPLY, DIVIDE, BLANK
+}
+```
 
 ##### 2D Array
 
