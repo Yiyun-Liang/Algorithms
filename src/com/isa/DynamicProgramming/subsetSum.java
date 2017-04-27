@@ -74,6 +74,41 @@ CJava
          return subset[sum][n];
     }
     
+    // follow up question
+    // display all subsets
+    static void printSubsets(int arr[], int i, int sum, ArrayList<Integer> currentSubset){
+        if(i==0 && sum != 0 && subset[sum][0]){
+            currentSubset.add(arr[i]);
+            display(currentSubset);
+            return;
+        }
+        
+        // If sum becomes 0
+        if (i == 0 && sum == 0)
+        {
+            display(currentSubset);
+            return;
+        }
+
+        // If given sum can be achieved after ignoring
+        // current element.
+        if (subset[i-1][sum])
+        {
+            // Create a new vector to store path
+            ArrayList<Integer> b = currentSubset;
+            printSubsets(arr, i-1, sum, b);
+        }
+
+        // If given sum can be achieved after considering
+        // current element.
+        if (sum >= arr[i] && dp[i-1][sum-arr[i]])
+        {
+            currentSubset.add(arr[i]);
+            printSubsets(arr, i-1, sum-arr[i], currentSubset);
+        }
+    
+    }
+    
      /* Driver program to test above function */
     public static void main (String args[])
     {
