@@ -6,6 +6,7 @@
 	- implement a method to compute all...
 
 - remember to look at the problem in a different way as well
+- see if sub-problems exists and will help solve a bigger sub-problem, then think about how to pass from one sub to another bigger sub.
 
 #### How To Approach
 - need to compute f(n), change it to get f(n-1)
@@ -30,3 +31,4 @@ All recursive algorithms can be implemented iteratively.
 ### DP
 
 - implement recursive solution, then add memoization
+- sometime in 2D dp problems(use of a matrix), going from bottom-right to top-left is same as top-left to bottom-right
