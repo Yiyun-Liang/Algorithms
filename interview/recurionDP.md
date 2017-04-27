@@ -12,6 +12,9 @@
 - need to compute f(n), change it to get f(n-1)
 - solve for first half, then the second half, then merge the results
 
+1) try to solve for (n-1)
+2) try to solve for (i,j) of length 1~n
+
 1. bottom-up
 	- solve for a list with only one element, then two, etc
 	- think about how to build up the solution based on previous cases
