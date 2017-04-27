@@ -36,11 +36,11 @@ public class KnuthShuffle {
     }
     
     // useful method
-    public int rand(int lower, int upper){
-        return lower + Math.random()*(upper-lower+1);
+    public static int rand(int lower, int upper){
+        return (int)(lower + Math.random()*(upper-lower+1));
     }
     
-    public static void shuffleRecursive(Object[] arr, int n){
+    public static Object[] shuffleRecursive(Object[] arr, int n){
         if(n==0) return arr;
         
         shuffleRecursive(arr, n-1);

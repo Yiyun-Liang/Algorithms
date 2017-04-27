@@ -3,7 +3,7 @@ package com.isa.DynamicProgramming;
 /**
  * Created by isa on 2017-03-12.
  */
-public class LongestPalindromeSeq {
+public class LongestPalindromeSubSeq {
 
     // still use the LCS problem
 

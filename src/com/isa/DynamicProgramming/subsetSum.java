@@ -1,7 +1,12 @@
+package com.isa.DynamicProgramming;
+
+import java.util.ArrayList;
+
 // A recursive solution for subset sum problem
 // http://www.geeksforgeeks.org/dynamic-programming-subset-sum-problem/
-class subset_sum
-{
+public class subsetSum {
+    static boolean[][] subset;
+
     // Returns true if there is a subset of set[] with sum
         // equal to given sum
     static boolean isSubsetSum(int set[], int n, int sum)
@@ -37,7 +42,7 @@ otherwise false. Finally, we return subset[sum][n]
 CJava
 */
 // Returns true if there is a subset of set[] with sun equal to given sum
-    static boolean isSubsetSum(int set[], int n, int sum)
+    static boolean isSubsetSumBottomUp(int set[], int n, int sum)
     {
         // The value of subset[i][j] will be true if there 
             // is a subset of set[0..j-1] with sum equal to i
@@ -58,8 +63,7 @@ CJava
            {
              subset[i][j] = subset[i][j-1];
              if (i >= set[j-1])
-               subset[i][j] = subset[i][j] || 
-                                          subset[i - set[j-1]][j-1];
+               subset[i][j] = subset[i][j] || subset[i - set[j-1]][j-1];
            }
          }
       
@@ -101,12 +105,16 @@ CJava
 
         // If given sum can be achieved after considering
         // current element.
-        if (sum >= arr[i] && dp[i-1][sum-arr[i]])
+        if (sum >= arr[i] && subset[i-1][sum-arr[i]])
         {
             currentSubset.add(arr[i]);
             printSubsets(arr, i-1, sum-arr[i], currentSubset);
         }
     
+    }
+
+    public static void display(ArrayList<Integer> currentSubset){
+
     }
     
      /* Driver program to test above function */

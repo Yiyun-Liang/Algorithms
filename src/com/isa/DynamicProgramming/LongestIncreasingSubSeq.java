@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Created by isa on 2017-03-05.
  */
-public class LongestIncreasingSeq {
+public class LongestIncreasingSubSeq {
     // apply a similar technique as LCS problem
 
     // get the longest monotonically increasing subsequence of a sequence of n numbers
@@ -36,7 +36,7 @@ public class LongestIncreasingSeq {
     }
     
     // Another O(n^2) solution not using lcs, memoized version
-    public static void incSeq(int[] num){
+    public static int incSeq(int[] num){
         int n = num.length;
         int[] lis = new int[n];  // length of the longest seq ending with num[i]
         

@@ -1,3 +1,5 @@
+package com.isa.DynamicProgramming;
+
 // TopCoder http://community.topcoder.com/stat?c=problem_statement&pm=1889&rd=4709
 // https://github.com/mgechev/playground/blob/master/algorithms/AvoidRoads.java
 public class AvoidRoads {
