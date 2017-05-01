@@ -1,5 +1,4 @@
-
-import java.lang.Math; 
+package com.isa.Interviews.Recursion;
 
 /*
 Given a string S, you are allowed to convert it to a palindrome by adding characters in front of it. 
@@ -32,7 +31,7 @@ public class ShortestPalindrome
   }
   
   // another solution, probably worse one
-  public String shortestPalindrome(String s) {
+  public String shortestPalindromeScanFromCenter(String s) {
 	if (s == null || s.length() <= 1)
 		return s;
  
