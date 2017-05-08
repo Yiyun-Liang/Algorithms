@@ -50,4 +50,4 @@ public enum Operator {
 - subsequent: elements whose subscripts are increasing in the original sequence
 - subset: any possible combinations of original set
 - the use of int vs. long, ask if 64 bit long is necessary
-- in the end after completing the problem, think about a test cases that have very long and large input, see if the algorithm needs to deal with smaller ones
+- in the end after completing the problem, think about a test cases that have very long and large input, see if the algorithm needs to deal with smaller ones. eg. really long String may cause a running out of heap space.
