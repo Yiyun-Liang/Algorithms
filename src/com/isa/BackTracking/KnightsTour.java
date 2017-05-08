@@ -98,8 +98,10 @@ public class KnightsTour {
 
     public static void main(String[] args){
         KnightsTour tour = new KnightsTour(3,3);
-        tour.tourFrom(0, 0);
         tour.printGrid();
+        boolean res = tour.tourFrom(0, 0);
+        tour.printGrid();
+        System.out.println(res);
     }
 
 }

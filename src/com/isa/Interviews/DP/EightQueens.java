@@ -91,21 +91,7 @@ public class EightQueens {
             printBoard(board);
         }
     }
-	/*
-    private void addQueenShorter(int row) {
-        for (int col = 0; col <= N-1; col++) {
-            if (possible(row, col)) {
-                reserve(row, col);
-                if (row == N-1) {
-                printSolution();
-                solutions++;
-                } else {
-                addQueen(row + 1);
-                }
-                cancel(row, col);
-            }
-        }
-    }*/
+
 
     public static void main(String[] args) {
         ArrayList<Integer[]> results = new ArrayList<>();
