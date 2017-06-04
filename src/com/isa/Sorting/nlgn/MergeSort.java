@@ -15,9 +15,9 @@ public class MergeSort {
      *
      */
 
-    public static void mergeSort(int[] arr, int lower, int upper){
+    public static void mergeSort(int[] arr, int lower, int upper) {
         if(lower < upper) {
-            int mid = lower + (upper - lower)/2;
+            int mid = lower + (upper - lower)/2; // avoids overflow for large upper and lower
 
             mergeSort(arr, lower, mid);
             mergeSort(arr, mid+1, upper);
@@ -25,24 +25,30 @@ public class MergeSort {
         }
     }
 
-    public static int merge(int[] arr, int lower, int mid, int upper){
+    public static void merge(int[] arr, int lower, int mid, int upper) {
 
-        int[] temp = new int[arr.length];
+        int leftLen = mid - lower + 1;
+        int rightLen = upper - mid;
+        int[] L = new int[leftLen];
+        int[] R = new int[rightLen];
 
-        for (int i = lower; i <= upper; i++) {
-            temp[i] = arr[i];
+        for (int i = 0; i < leftLen; i++) {
+            L[i] = arr[lower + i];
+        }
+        for (int j = 0; j < rightLen; j++) {
+            R[j] = arr[mid + 1 + j];
         }
 
-        int i = lower;
-        int j = mid + 1;
+        int i = 0;
+        int j = 0;
         int k = lower;
 
-        while (i <= mid && j <= upper) {
-            if (temp[i] <= temp[j]) {
-                arr[k] = temp[i];
+        while (i < leftLen && j < rightLen) {
+            if (L[i] <= R[j]) {
+                arr[k] = L[i];
                 i++;
             } else {
-                arr[k] = temp[j];
+                arr[k] = R[j];
                 j++;
                 inversions+= mid-i+1;
             }
@@ -50,43 +56,36 @@ public class MergeSort {
         }
 
         // the first array is guaranteed to be longer than the second one
-        while (i <= mid) {
-            arr[k] = temp[i];
-            k++;
+        while (i < leftLen) {
+            arr[k] = L[i];
             i++;
+            k++;
         }
 
-        return inversions;
+        while (j < rightLen) {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
     }
 
-    public static void merge(int[] left, int[] right, int[] arr){
-        int lenL = left.length;
-        int lenR = right.length;
-
-        int l = 0;
-        int r = 0;
-        int m = 0;
-        while(l < lenL && r < lenR){
-            if(left[l] <= right[r]){
-                arr[m] = left[l];
-                l++;
-            }else{
-                arr[m] = right[r];
-                r++;
+    // bottom up technique
+    public static void mergeSortIterative(int[] arr, int n) {
+        for (int currentSize = 1; currentSize < n; currentSize *= 2) {
+            for (int leftStart = 0; leftStart < n-1; leftStart += 2*currentSize) {
+                merge(arr, leftStart, leftStart+currentSize-1, Math.min(leftStart+2*currentSize-1, n-1));
             }
-            m++;
         }
+    }
 
-        while(l < lenL){
-            arr[m] = left[l];
-            l++;
-            m++;
+    public static void main(String[] args) {
+        int[] arr = {9,6,3,6,1,3,8,0,3};
+        //mergeSort(arr, 0, arr.length-1);
+        mergeSortIterative(arr, arr.length);
+        for (int i : arr) {
+            System.out.print(i);
         }
-
-        while(r < lenR){
-            arr[m] = right[r];
-            r++;
-            m++;
-        }
+        System.out.println();
+        System.out.println(inversions);
     }
 }
