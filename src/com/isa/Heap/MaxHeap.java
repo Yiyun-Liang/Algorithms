@@ -26,7 +26,7 @@ public class MaxHeap {
     public void buildAHeap(){
         int nonLeaf = heapSize/2;  // floor(len/2)
 
-        for(int i = nonLeaf; i >= 1; i--){   // runs n/2 times
+        for(int i = nonLeaf; i >= 0; i--){   // runs n/2 times
             maxHeapify(i);              // O(lgn)
         }
     }
