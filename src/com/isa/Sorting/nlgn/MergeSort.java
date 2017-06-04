@@ -79,9 +79,9 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {9,6,3,6,1,3,8,0,3};
-        //mergeSort(arr, 0, arr.length-1);
-        mergeSortIterative(arr, arr.length);
+        int[] arr = {1, 20, 6, 4, 5};
+        mergeSort(arr, 0, arr.length-1); // inversion count works for recursive merge sort only
+        //mergeSortIterative(arr, arr.length);
         for (int i : arr) {
             System.out.print(i);
         }
