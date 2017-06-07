@@ -3,7 +3,7 @@
 The runtime of a recursive function with multiple branches is typically O(branches^depth).
 
 - Eg. iterate through a balanced binary tree:
-O(2^lg2) = O(n)
+O(2^lgn) = O(n)
 - Eg. sort an array of string, each string needs to be sorted as well
 	- Need to specify what each variable in the big o notation means
 		- A is length of array
