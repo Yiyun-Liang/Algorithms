@@ -40,8 +40,8 @@ public class BidirectionalSearch {
         // BFS on both nodes at the same time
         Queue<Node> queueA = new LinkedList<>();
         Queue<Node> queueB = new LinkedList<>();
-        Set<Node> visitedA = new HashSet<Node>();
-        Set<Node> visitedB = new HashSet<Node>();
+        Set<Node> visitedA = new HashSet<>();
+        Set<Node> visitedB = new HashSet<>();
 
         visitedA.add(a);
         visitedB.add(b);
