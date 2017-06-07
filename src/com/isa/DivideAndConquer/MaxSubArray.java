@@ -90,7 +90,7 @@ public class MaxSubArray {
     // does not handle the case where all numbers in the array are negative
 
     public int max(int[] arr){
-        int maxSum = Integer.MAX_VALUE;
+        int maxSum = Integer.MIN_VALUE;
         int sum = 0;
         for(int i = 0; i < arr.length; i++){
             sum += arr[i];
@@ -106,7 +106,8 @@ public class MaxSubArray {
 
     // Approach 2: Standard Kadane’s Algorithm
     // find max or min absolute sum of a subarray of an array of integers in O(n)
-    // to find min, change sign of each element in the array and then run Kadane’s Algorithm to find max sum, then invert sign of the max sum found
+    // to find min, change sign of each element in the array and then run Kadane’s Algorithm to find max sum,
+    // then invert sign of the max sum = found
     // also handles the case when all numbers in the array are negative
 
     public int maxSub(int[] arr){

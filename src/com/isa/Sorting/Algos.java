@@ -30,7 +30,7 @@ public class Algos {
      */
 
     // sort
-    public static boolean perutation(int[] a, int[] b){
+    public static boolean permutation(int[] a, int[] b){
         return true;
     }
 

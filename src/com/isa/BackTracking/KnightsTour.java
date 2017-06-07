@@ -75,7 +75,7 @@ public class KnightsTour {
                 continue;
             else if(grid[nextRow][nextCol])
                 continue;
-            if(tourFrom(row+p.x, col+p.y))
+            if(tourFrom(nextRow, nextCol))
                 return true;
         }
 

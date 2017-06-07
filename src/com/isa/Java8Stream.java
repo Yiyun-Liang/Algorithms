@@ -22,6 +22,16 @@ public class Java8Stream {
 
     public static void main(String[] args){
 
+        // useful: convert arraylist of Integers to int[]
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(6);
+        list.add(5);
+        list.add(7);
+        int[] integers = list.stream().mapToInt(i->i).toArray();
+
+        // initialize arraylist with values
+        List<String> x = new ArrayList<>(Arrays.asList("xyz", "abc"));
+
         // Sequential streams
         List<String> myList =
                 Arrays.asList("a1", "a2", "b1", "c2", "c1");

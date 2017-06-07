@@ -90,7 +90,7 @@ public class ActivitySelection {
         for(int i = 0; i < n; i++){
             for(int j = 1; j < n; j++){
                 if(i >= j){
-                    s[i][j] = 0;  // i need to smaller than j
+                    s[i][j] = 0;  // i needs to be smaller than j
                 }else{
                     for(int k = i+1; k <= j-1; k++){
                         if(s[i][j] < s[i][k] + s[k][j] + 1){

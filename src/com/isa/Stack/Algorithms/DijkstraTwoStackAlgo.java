@@ -14,7 +14,7 @@ public class DijkstraTwoStackAlgo {
         Stack<String> ops = new Stack<>();
 
         for(int i = 0; i < input.length(); i++){
-            int c = input.charAt(i);
+            char c = input.charAt(i);
 
             switch(c){
                 case '(':
@@ -28,7 +28,7 @@ public class DijkstraTwoStackAlgo {
                     break;
                 case '+':
                 case '*':
-                    //ops.push(Character.toString(c));
+                    ops.push(Character.toString(c));
                     break;
                 default:
                     vals.push((double)(c - '0'));

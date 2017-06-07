@@ -8,6 +8,11 @@ import java.util.HashSet;
 
 public class QuickFind implements UF {
 
+    /**
+     * maintains the invariant that p and q are connected if and only if id[p] is equal to id[q].
+     * In other words, all sites in a component must have the same value in id[].
+     */
+
     private int[] arr;
 
     public QuickFind(int n){

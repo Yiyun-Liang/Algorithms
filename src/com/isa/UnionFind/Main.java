@@ -6,6 +6,11 @@ package com.isa.UnionFind;
 public class Main {
 
     /**
+     * Solves the connectivity problem: is there a connection between two things
+     * http://algs4.cs.princeton.edu/15uf/
+     */
+
+    /**
      *          M union-find operations on a set of N objects
      *
      *  |-------------------------------------------------------------------|
@@ -13,9 +18,9 @@ public class Main {
      *  |-------------------------------------------------|-----------------|
      *  | quick find          |      N     |   N   |   1  |       M N       |
      *  |-------------------------------------------------|-----------------|
-     *  | quick union         |      N     |   N   |   N  |       M N       |
+     *  | quick union         |      N     |   N   |   N  |       M N       |  union and find takes (tree height) time
      *  |-------------------------------------------------|-----------------|
-     *  | weighted qu         |      N     |  lgN  | lgN  |    N + M lgN    |  depth of any node x is at most lg(2)N - proof 1
+     *  | weighted qu         |      N     |  lgN  | lgN  |    N + M lgN    |  depth of any node x is at most lgN - proof 1
      *  |-------------------------------------------------|-----------------|
      *  |qu + path compression|      N     |  lgN  | lgN  |    N + M lgN    |
      *  |-------------------------------------------------|-----------------|
@@ -63,7 +68,7 @@ public class Main {
 
     /**
      * Extension problem 3:
-     *      iven a social network containing n members and a log file containing
+     *      given a social network containing n members and a log file containing
      *      m timestamps at which times pairs of members formed friendships,
      *      design an algorithm to determine the earliest time at which all
      *      members are connected (i.e., every member is a friend of a friend
