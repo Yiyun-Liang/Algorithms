@@ -2,6 +2,7 @@ package com.isa.Sorting;
 
 import com.isa.Sorting.n.CountingSort;
 import com.isa.Sorting.nlgn.HeapSort;
+import com.isa.Sorting.nlgn.MergeSort;
 import com.isa.Sorting.nlgn2.ShellSort;
 import com.isa.Sorting.quadraticOrNlgn.QuickSort;
 
@@ -17,12 +18,12 @@ public class Main {
         int[] unsortedArrForCountingSort = {7, 5, 5, 3, 2, 7, 0, 6};
 
         //InsertionSort.insertionSort(unsortedArr);
-        //MergeSort.mergeSort(unsortedArr, 0, 5);
+        MergeSort.mergeSort(unsortedArr, 0, 5);
         //SelectionSort.sort(unsortedArr);
         //ShellSort.sort(unsortedArr);
         //HeapSort.sort(unsortedArrForHeapSort);
         //QuickSort.sort(unsortedArr);
-        CountingSort.sort(unsortedArrForCountingSort, 7);
+        //CountingSort.sort(unsortedArrForCountingSort, 7);
 
         for(int i: unsortedArr){
             System.out.println(i);

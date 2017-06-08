@@ -7,8 +7,7 @@ Find and return the shortest palindrome you can find by performing this transfor
 For example, given "aacecaaa", return "aaacecaaa"; given "abcd", return "dcbabcd".
 */
 
-public class ShortestPalindrome
-{
+public class ShortestPalindrome {
   
   public String shortestPalindrome(String s) {
     int i=0; 

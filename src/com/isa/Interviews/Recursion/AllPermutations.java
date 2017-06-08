@@ -24,7 +24,7 @@ public class AllPermutations {
         for (int i = 0; i < len; i++) {
 			/* Remove char i and find permutations of remaining characters.*/
             String before = remainder.substring(0, i);
-            String after = remainder.substring(i + 1, len);
+            String after = remainder.substring(i + 1);
             ArrayList<String> partials = getPerms(before + after);
 
 			/* Prepend char i to each permutation.*/

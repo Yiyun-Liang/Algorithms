@@ -15,5 +15,8 @@ public class Main {
 
         int[][] arr = {{1,2},{3,4},{5,6}};
         System.out.println(arr.length); // 3
+
+        String abc = "abc";
+        System.out.println(abc.substring(0,1));
     }
 }

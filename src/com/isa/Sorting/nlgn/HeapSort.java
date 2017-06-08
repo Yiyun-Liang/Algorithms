@@ -20,7 +20,7 @@ public class HeapSort {
         for(int i = heapSize; i >= 2; i--){    // n-1 calls
             mh.exch(1, i);
             mh.decreaseHeapSizeByOne();
-            mh.maxHeapify(1);             // O(lgn)
+            mh.bubbleDown(1);             // O(lgn)
         }
     }
 }

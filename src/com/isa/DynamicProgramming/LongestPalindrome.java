@@ -1,13 +1,11 @@
-
-import java.lang.Math; 
+package com.isa.DynamicProgramming;
 
 /*
   Finding the longest palindromic substring is a classic problem of coding interview. 
   This post summarizes 3 different solutions for this problem.
 */
 
-public class LongestPalindrome
-{
+public class LongestPalindrome {
   // Approach 1
   /*
     table[i+1][j-1] == 1 && s.charAt(i) == s.charAt(j)

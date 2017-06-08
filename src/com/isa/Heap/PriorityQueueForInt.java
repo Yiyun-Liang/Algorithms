@@ -32,7 +32,7 @@ public class PriorityQueueForInt {
         }else{
             arr[i] = arr[heapSize];
             heapSize -= 1;
-            mh.maxHeapify(i);
+            mh.bubbleDown(i);
         }
     }
 
@@ -52,7 +52,7 @@ public class PriorityQueueForInt {
     public void heapIncreaseKey(int index, int newKey){
         if(newKey < arr[index]){
             System.err.println("new key is smaller than current key");
-            exit(0);
+            return;
         }
 
         arr[index] = newKey;
@@ -84,7 +84,7 @@ public class PriorityQueueForInt {
 
         arr[1] = arr[heapSize];
         heapSize -= 1;
-        mh.maxHeapify(1);   // always change size first, then heapify!!, O(lgn)
+        mh.bubbleDown(1);   // always change size first, then heapify!!, O(lgn)
 
         return max;
     }

@@ -123,8 +123,7 @@ public class LongestIncreasingSubSeq {
  
         tailTable[0] = A[0];
         len = 1;
-        for (int i = 1; i < size; i++)
-        {
+        for (int i = 1; i < size; i++) {
             if (A[i] < tailTable[0])
                 // new smallest value
                 tailTable[0] = A[i];

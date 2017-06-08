@@ -1,9 +1,5 @@
 package com.isa.Heap;
 
-import java.util.NoSuchElementException;
-
-import static java.lang.System.exit;
-
 /**
  * Created by isa on 2017-02-12.
  */
@@ -27,7 +23,7 @@ public class MaxHeap {
         int nonLeaf = heapSize/2;  // floor(len/2)
 
         for(int i = nonLeaf; i >= 0; i--){   // runs n/2 times
-            maxHeapify(i);              // O(lgn)
+            bubbleDown(i);              // O(lgn)
         }
     }
 
@@ -39,16 +35,14 @@ public class MaxHeap {
         Recurrence: T(n) <= T(2n/3) + O(1)  // the children's subtree has size at most 2n/3
         Time complexity(worst-case): O(lgn)
      */
-    public void maxHeapify(int i){
+    public void bubbleDown(int i){
         int left = left(i);
         int right = right(i);
 
-        int max = -1;
+        int max = i;
 
         if(left <= heapSize && arr[left] > arr[i]){
             max = left;
-        }else{
-            max = i;
         }
 
         if(right <= heapSize && arr[right] > arr[max]){
@@ -57,7 +51,7 @@ public class MaxHeap {
 
         if(max != i){
             exch(max, i);
-            maxHeapify(max);
+            bubbleDown(max);
         }
     }
 
@@ -67,16 +61,17 @@ public class MaxHeap {
         arr[b] = temp;
     }
 
+    // for zero-based array
     public int parent(int i){
-        return (int) Math.floor(i/2);
+        return (int) Math.floor((i-1)/2);
     }
 
     public int left(int i){
-        return i*2;
+        return i*2 + 1;
     }
 
     public int right(int i){
-        return i*2 + 1;
+        return i*2 + 2;
     }
 
     public void decreaseHeapSizeByOne(){
