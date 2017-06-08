@@ -1,3 +1,8 @@
+!!! read every piece of information in the question carefully!!!
+
+- sorted array?
+- 32-bit integers?
+
 ##### Interview tips
 
 - thorough test in the end
