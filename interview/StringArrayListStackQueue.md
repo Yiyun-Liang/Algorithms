@@ -16,6 +16,17 @@ String[][] pairs = {{"apple", "pleap"}, {"waterbottle", "erbottlewat"}, {"camera
 ```
 - for(char c : word.toCharArray()) instead of charAt(i) where i = 0 to word.length()
 
+#### Binary Search On Arrays
+- search space: range(sorted array) vs. value(unsorted array)
+- eg (sorted,range=maxIndex-minIndex). 
+    - normal binary search
+    - binary search on rotated array by comparing value at index
+    - find peak/valley element, get two values at index (`nums[mid]`, `nums[mid+1]`), then take either half
+
+- eg (unsorted,value=maxVal-minVal).
+   - find the duplicate number, use pigeon-hole principle, count number of elements smaller than mid value
+   - kth smallest element in sorted matrix (sorted but in 2D, so not using range), `maxVal - minVal`, count number of elements smaller than mid value, then decide which half to take
+
 ### Linked Lists
 
 - for a singly linked list, to delete a node, no need a prev pointer, check value using ```n.next.data = d```
@@ -135,3 +146,6 @@ public static Stack<Integer> mergesort(Stack<Integer> inStack) {
 	}
 ```
 
+### Heap
+- usually see in question 
+    - find `kth`, `top k`, etc
