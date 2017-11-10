@@ -19,9 +19,12 @@ String[][] pairs = {{"apple", "pleap"}, {"waterbottle", "erbottlewat"}, {"camera
 #### Binary Search On Arrays
 - search space: range(sorted array) vs. value(unsorted array)
 - eg (sorted,range=maxIndex-minIndex). 
+    - whenever see sorted in the question, likely needs binary search
     - normal binary search
     - binary search on rotated array by comparing value at index
     - find peak/valley element, get two values at index (`nums[mid]`, `nums[mid+1]`), then take either half
+        - two neighboring values tell us which side solution is on, so read two values everytime
+    - two sum question on sorted array, use two pointers+binary search
 
 - eg (unsorted,value=maxVal-minVal).
    - find the duplicate number, use pigeon-hole principle, count number of elements smaller than mid value
