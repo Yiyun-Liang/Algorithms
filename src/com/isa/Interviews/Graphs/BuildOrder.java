@@ -44,7 +44,7 @@ public class BuildOrder {
         return graph;
     }
 
-    // different from topological sort(requires graph to be acyclic)
+    // different from topological sort(which requires graph to be acyclic)
     public static boolean buildOrderDFS(Vertex vertex, Stack<Vertex> stack){
         if (vertex.getState() == Vertex.State.PARTIAL) {
             return false; // Cycle

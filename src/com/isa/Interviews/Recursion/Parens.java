@@ -13,6 +13,10 @@ public class Parens {
 
          Input: 3
          Output: ((())), (()()), (())(), ()(()), ()()()
+
+         ()
+         ()(),(())
+         ()()(),(())(),()(()),((())),(()())
      */
 
     public static String insertInside(String str, int leftIndex) {
@@ -22,7 +26,7 @@ public class Parens {
     }
 
     public static Set<String> generateParens(int remaining) {
-        Set<String> set = new HashSet<String>();
+        Set<String> set = new HashSet<>();
         if (remaining == 0) {
             set.add("");
         } else {

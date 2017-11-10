@@ -20,7 +20,6 @@ public class AllPermutations {
             return result;
         }
 
-
         for (int i = 0; i < len; i++) {
 			/* Remove char i and find permutations of remaining characters.*/
             String before = remainder.substring(0, i);

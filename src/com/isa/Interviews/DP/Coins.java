@@ -39,6 +39,7 @@ public class Coins {
 
     // http://www.geeksforgeeks.org/dynamic-programming-set-7-coin-change/
     // faster than the solution shown above
+    // bottom up solution
     public static int countWays(int coins[], int numCoins, int amount)
     {
         // Time complexity of this function: O(mn)
@@ -96,16 +97,18 @@ public class Coins {
     }
 
     public static void main(String[] args) {
-        int[] coins = {25, 10, 5, 1};
+        int[] coins = {1,2,3};
         Map<Integer, Integer> memo = new HashMap<>();
 
-        long startTime = System.nanoTime();
+        /*long startTime = System.nanoTime();
         //System.out.println(countWays(coins, coins.length, 1000)); // 0ms
         //System.out.println(makeChange(1000, coins));  // 3ms
         System.out.println(getCoins(coins, 1000, memo));
         long endTime = System.nanoTime();
 
         long duration = (endTime - startTime)/1000000;  //divide by 1000000 to get milliseconds.
-        System.out.println(duration + "ms");
+        System.out.println(duration + "ms");*/
+
+        System.out.println(countWays(coins, coins.length, 4));
     }
 }
